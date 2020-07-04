@@ -1,0 +1,52 @@
+<%- include('includes/head') %>
+
+<body class="text-center"> <!-- <body class="text-center bg-dark"> -->
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+          <div class="inner">
+            <h3 class="masthead-brand">
+              <a class="redHyperLink" href="/">
+                <svg class="bi bi-house-door-fill" width="2rem" height="2rem" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"/>
+                  <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                </svg>Cinema Tickets Booking</a></h3> <!-- IMPORTANT!!! Will need to add a tooltip and animation on hover -->
+          </div>
+        </header>
+        <div class="formContent row justify-content-center">
+          <div class="col-md-6">
+            <div class="row justify-content-center">
+              <h2 class="formTitle">Please sign in</h2>
+            </div>
+            <%- messages() %>
+            <form method="post" action="/users/login">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label-lg">Username</label>
+                <div class="col-sm-6">
+                  <input type="text" name="username" class="form-control form-control-lg" required autofocus>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label-lg">Password</label>
+                <div class="col-sm-6">
+                  <input type="password" name="password" class="form-control form-control-lg" required>
+                </div>
+              </div>
+              <div id="form-group-signin" class="form-group row">
+                <div class="col-sm-3 offset-sm-3 col-form-label-lg">Remember me</div>
+                <div class="col-sm-1">
+                  <div class="form-check">
+                    <input type="checkbox" name="remember_me" class="form-check-input form-check-input-lg">
+                  </div>
+                </div>
+                <div>
+                  <button type="submit" name="submit" class="btn btn-lg btn-danger">Sign in</button>
+                </div>
+              </div>
+              <div class="form-group row justify-content-center formSubmitGroup">
+                  <label class="col-form-label-lg">Don't have an account? <a class="redHyperLink" href="/users/register">Register</a></label>
+              </div>
+            </form>
+          </div>
+        </div>
+
+<%- include('includes/footer'); %>

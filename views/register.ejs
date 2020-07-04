@@ -1,0 +1,71 @@
+<%- include('includes/head') %>
+
+<body class="text-center"> <!-- <body class="text-center bg-dark"> -->
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+          <div class="inner">
+            <h3 class="masthead-brand">
+              <a class="redHyperLink" href="/">
+                <svg class="bi bi-house-door-fill" width="2rem" height="2rem" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"/>
+                  <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                </svg>Cinema Tickets Booking</a></h3> <!-- IMPORTANT!!! Will need to add a tooltip and animation on hover -->
+          </div>
+        </header>
+        <div class="formContent row justify-content-center">
+          <div class="col-md-6">
+            <div class="row justify-content-center">
+              <h2 class="formTitle">User Registration</h2>
+            </div>
+            <% if (locals.errors) { %>
+              <% errors.forEach(function(error){ %>
+                <div class="alert alert-danger"><%= error.msg %></div>
+                <% }) %>
+            <% } %>
+            <%- messages() %>
+            <form method="post" action="/users/register">
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label-lg">First Name</label>
+                <div class="col-sm-8">
+                  <input type="text" name="first_name" value="<%= (locals.first_name)?first_name:'' %>" class="form-control form-control-lg" required autofocus>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label-lg">Last Name</label>
+                <div class="col-sm-8">
+                  <input type="text" name="last_name" value="<%= (locals.last_name)?last_name:'' %>" class="form-control form-control-lg" required autofocus>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label-lg">Email address</label>
+                <div class="col-sm-8">
+                  <input type="text" name="email" value="<%= (locals.email)?email:'' %>" class="form-control form-control-lg" required autofocus> <!-- placeholder="We'll never share your email with anyone else"-->
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label-lg">Username</label>
+                <div class="col-sm-8">
+                  <input type="text" name="username" value="<%= (locals.username)?username:'' %>" class="form-control form-control-lg" required autofocus>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label-lg">Password</label>
+                <div class="col-sm-8">
+                  <input type="password" name="password" value="<%= (locals.password)?password:'' %>" class="form-control form-control-lg" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label-lg">Password Confirm</label>
+                <div class="col-sm-8">
+                  <input type="password" name="password_confirm" value="<%= (locals.password_confirm)?password_confirm:'' %>" class="form-control form-control-lg" required>
+                </div>
+              </div>
+              <div class="form-group row justify-content-end formSubmitGroup">
+                  <label class="col-sm-5 col-form-label-lg">Have an account? <a class="redHyperLink" href="/users/login">Login</a></label>
+                  <div class="col-sm-2"><button type="submit" class="btn btn-lg btn-danger">Submit</button></div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+<%- include('includes/footer'); %>
