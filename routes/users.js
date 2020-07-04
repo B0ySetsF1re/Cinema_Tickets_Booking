@@ -20,7 +20,7 @@ var _Time = require('../debugging/timeDisplay');
 // Check if user is authenticated
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
-    if(req.user.role == 'admin' || req.user.role == 'manager') {
+    if(req.user.role == 'admin' || req.user.role == 'manager') { // Probably will write a custom middleware to check the role and to handle flash error messages
       if(RBAC.can(req.user.role, 'manage_orders')) {
         return next();
       };
