@@ -9,13 +9,23 @@ var router = express.Router();
 // Connecting userController (for signup/login and access controll logics)
 const userController = require('../controllers/userController');
 
+// Connecting roleController (to manage access controll by roles)
+const roleModel = require('../models/roleModel');
+const rbacController = require('../controllers/rbacController');
+const RBAC = new rbacController(roleModel);
+
 // Getting current time (for debugging)
 var _Time = require('../debugging/timeDisplay');
 
 // Check if user is authenticated
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
-    return next();
+    if(req.user.role == 'admin' || req.user.role == 'manager') {
+      if(RBAC.can(req.user.role, 'manage_orders')) {
+        return next();
+      };
+    }
+    // return next();
   }
   req.flash('error', 'You are not authorized to access this page!');
   res.redirect('/users/login');
