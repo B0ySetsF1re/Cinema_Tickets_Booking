@@ -1,26 +1,26 @@
 // Connecting required modules
-var express = require('express');
-var session = require('express-session');
+const express = require('express');
+const session = require('express-session');
 
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy; // Used for authentication method deffinition
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy; // Used for authentication method deffinition
 
-var bodyParser = require('body-parser');
-var flash = require('connect-flash');
-var path = require('path');
-var ejs = require('ejs');
+const bodyParser = require('body-parser');
+const flash = require('connect-flash');
+const path = require('path');
+const ejs = require('ejs');
 
 var port = 3000;
 // var hostAddress = '192.168.1.106';
 
 // Connecting new .js files located under /routes directory
-var routes = require('./routes/index');
-var users = require('./routes/users');
+const routes = require('./routes/index');
+const users = require('./routes/users');
 
-var app = express();
+const app = express();
 
 // Getting current time (for debugging)
-var _Time = require('./debugging/timeDisplay');
+const _Time = require('./debugging/timeDisplay');
 
 // View Engine
 app.set('view engine', 'ejs');

@@ -3,8 +3,8 @@
 // require('dotenv').config();
 
 // Connecting required modules
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 // Connecting userController (for signup/login and access controll logics)
 const userController = require('../controllers/userController');
@@ -15,7 +15,7 @@ const rbacController = require('../controllers/rbacController');
 const RBAC = new rbacController(roleModel);
 
 // Getting current time (for debugging)
-var _Time = require('../debugging/timeDisplay');
+const _Time = require('../debugging/timeDisplay');
 
 // Check if user is authenticated
 function ensureAuthenticated(req, res, next) {
