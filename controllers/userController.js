@@ -1,16 +1,16 @@
 // Connecting required modules
-var mongojs = require('mongojs');
+const mongojs = require('mongojs');
 var db = mongojs('cinema_booking', ['users']);
 
 const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const { check, body, validationResult } = require('express-validator'); // const validationResult = require('express-validator');
 
-var passport = require('passport');
-var localStrategy = require('passport-local').Strategy;
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
 
 // Getting current time (for debugging)
-var _Time = require('../debugging/timeDisplay');
+const _Time = require('../debugging/timeDisplay');
 
 exports.expressValRules = [
   check('first_name').not().isEmpty().withMessage('First Name field is required!'),
