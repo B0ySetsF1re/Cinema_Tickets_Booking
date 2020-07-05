@@ -29,11 +29,11 @@ class RBAC {
   }
 }
 
-// Custom RBAC middleware - not tested and needs adjustments
-exports.checkRole = (req, res, next) => {
+// Custom RBAC middleware - not tested and needs adjustments <= such middleware would be better to write outside of this module (from routes files perspective)
+/*exports.checkRole = (req, res, next) => {
   if(req.user.role == 'admin' || req.user.role == 'manager') {
     return next();
   }
-}
+}*/
 
 module.exports = RBAC;

@@ -20,19 +20,34 @@ var _Time = require('../debugging/timeDisplay');
 // Check if user is authenticated
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
-    if(req.user.role == 'admin' || req.user.role == 'manager') { // Probably will write a custom middleware to check the role and to handle flash error messages
-      if(RBAC.can(req.user.role, 'manage_orders')) {
-        return next();
-      };
-    }
-    // return next();
+    return next();
   }
   req.flash('error', 'You are not authorized to access this page!');
   res.redirect('/users/login');
 }
 
+// Check user's role (custom middleware for RBAC)
+function checkForManager(req, res, next) {
+  if(req.user.role == 'admin' || req.user.role == 'manager') {
+    if(RBAC.can(req.user.role, 'manage_orders')) {
+      return next();
+    }
+  }
+  req.flash('error', 'You need to be at least manager to access this page!');
+  res.redirect('/');
+}
+
+// Prevent user to access login page when they are actually logged in
+function checkIfLoggedIn(req, res, next) {
+  if(req.isAuthenticated()) {
+    req.flash('error', 'You are already logged in!');
+    res.redirect('/');
+  }
+  next();
+}
+
 // Dashboard page - GET
-router.get('/dashboard', ensureAuthenticated, function(req, res) {
+router.get('/dashboard', [ensureAuthenticated, checkForManager], function(req, res) {
   res.render('dashboard', {
     title: 'Dashboard',
     showTitle: false
@@ -66,7 +81,7 @@ app.get('/user', function(req, res) {
 });*/
 
 // Login page - GET
-router.get('/login', function(req, res) {
+router.get('/login', checkIfLoggedIn, function(req, res) {
   res.render('login', {
     title: 'Please sign in',
     showTitle: false
