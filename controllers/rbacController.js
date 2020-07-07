@@ -27,13 +27,15 @@ class RBAC {
     // Check child rols until one returns true or all return false
     return $role.inherits.some(childRole => this.can(childRole, operation));
   }
-}
 
-// Custom RBAC middleware - not tested and needs adjustments <= such middleware would be better to write outside of this module (from routes files perspective)
-/*exports.checkRole = (req, res, next) => {
-  if(req.user.role == 'admin' || req.user.role == 'manager') {
-    return next();
+  roleExists(role) {
+    if(this.roles[role]) {
+      return true;
+    } else {
+      return false;
+    }
   }
-}*/
+
+}
 
 module.exports = RBAC;

@@ -26,10 +26,21 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/users/login');
 }
 
-// Check user's role (custom middleware for RBAC)
-function checkForManager(req, res, next) {
+// Check user's role (custom middleware for RBAC) => can function should be used in specifical scenarios
+/*function checkForManager(req, res, next) {
   if(req.user.role == 'admin' || req.user.role == 'manager') {
     if(RBAC.can(req.user.role, 'manage_orders')) {
+      return next();
+    }
+  }
+  req.flash('error', 'You need to be at least manager to access this page!');
+  res.redirect('/');
+}*/
+
+// Another user's role check, more logical
+function isManagerOrAdmin(req, res, next) {
+  if(RBAC.roleExists(req.user.role)) {
+    if(req.user.role == 'admin' || req.user.role == 'manager') {
       return next();
     }
   }
@@ -47,7 +58,7 @@ function checkIfLoggedIn(req, res, next) {
 }
 
 // Dashboard page - GET
-router.get('/dashboard', [ensureAuthenticated, checkForManager], function(req, res) {
+router.get('/dashboard', [ensureAuthenticated, isManagerOrAdmin], function(req, res) {
   res.render('dashboard', {
     title: 'Dashboard',
     showTitle: false
