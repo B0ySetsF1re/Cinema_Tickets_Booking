@@ -52,9 +52,11 @@ function isManagerOrAdmin(req, res, next) {
 function checkIfLoggedIn(req, res, next) {
   if(req.isAuthenticated()) {
     // req.flash('error', 'You are already logged in!');
-    res.redirect('/users/login/error');
+    res.location('/users/error/already-logged-in');
+    res.redirect('/users/error/already-logged-in');
+  } else {
+    next();
   }
-  next();
 }
 
 // Dashboard page - GET
@@ -100,10 +102,10 @@ router.get('/login', checkIfLoggedIn, function(req, res) {
 });
 
 // Login error page - GET
-router.get('/login/error', function(req, res) {
+router.get('/error/already-logged-in', function(req, res) {
   if(req.user) {
-    res.render('loginError', {
-      title: 'Login error',
+    res.render('alreadyAuthError', {
+      title: 'Error occured',
       showTitle: false,
       msg: 'You are already logged in!'
     });
@@ -113,7 +115,7 @@ router.get('/login/error', function(req, res) {
 });
 
 // Register page - GET
-router.get('/register', function(req, res) {
+router.get('/register', checkIfLoggedIn, function(req, res) {
   res.render('register', {
     title: 'Register',
     showTitle: false
@@ -133,6 +135,7 @@ router.post('/login',
     res.redirect('/');
   });
 
+// Logout page - GET
 router.get('/logout', function(req, res) {
   req.logout();
   req.flash('success', 'You have logged out');
