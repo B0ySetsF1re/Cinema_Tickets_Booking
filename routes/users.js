@@ -51,8 +51,8 @@ function isManagerOrAdmin(req, res, next) {
 // Prevent user to access login page when they are actually logged in
 function checkIfLoggedIn(req, res, next) {
   if(req.isAuthenticated()) {
-    req.flash('error', 'You are already logged in!');
-    res.redirect('/');
+    // req.flash('error', 'You are already logged in!');
+    res.redirect('/users/login/error');
   }
   next();
 }
@@ -97,6 +97,19 @@ router.get('/login', checkIfLoggedIn, function(req, res) {
     title: 'Please sign in',
     showTitle: false
   });
+});
+
+// Login error page - GET
+router.get('/login/error', function(req, res) {
+  if(req.user) {
+    res.render('loginError', {
+      title: 'Login error',
+      showTitle: false,
+      msg: 'You are already logged in!'
+    });
+  } else {
+    res.status(404).send('404 Not found');
+  }
 });
 
 // Register page - GET
