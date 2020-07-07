@@ -28,6 +28,7 @@ class RBAC {
     return $role.inherits.some(childRole => this.can(childRole, operation));
   }
 
+  // Check if role exists
   roleExists(role) {
     if(this.roles[role]) {
       return true;
@@ -35,7 +36,6 @@ class RBAC {
       return false;
     }
   }
-
 }
 
 module.exports = RBAC;
