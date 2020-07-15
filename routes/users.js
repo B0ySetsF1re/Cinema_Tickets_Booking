@@ -10,7 +10,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 
 // Connecting roleController (to manage access controll by roles)
-const roleModel = require('../models/roleModel');
+const roleModel = require('../models/roleModel'); // Probably will add an anonymous function or some to check if there are roles in the database
 const rbacController = require('../controllers/rbacController');
 const RBAC = new rbacController(roleModel);
 

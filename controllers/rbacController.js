@@ -32,7 +32,7 @@ class RBAC {
        return false;
     }
 
-    // Check child rols until one returns true or all return false
+    // Check child roles until one returns true or all return false
     return $role.inherits.some(childRole => this.can(childRole, operation));
   }
 
