@@ -24,25 +24,19 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="file"></span>
-                  Orders & Rents
+                  Movies
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="shopping-cart"></span>
-                  Archive
+                  Orders & Rents
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="bar-chart-2"></span>
                   Reports
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrations
                 </a>
               </li>
             </ul>
@@ -83,7 +77,7 @@
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <!--<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Dashboard</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
@@ -93,145 +87,174 @@
               <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
                 <span data-feather="calendar"></span>
                 This week
-              </button>
+              </button
+          </div>-->
+
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="add-tab" data-toggle="tab" href="#add" role="tab" aria-controls="add" aria-selected="true">Add</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="remove-tab" data-toggle="tab" href="#remove" role="tab" aria-controls="remove" aria-selected="false">Remove</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="add-or-remove-roles-tab" data-toggle="tab" href="#add-or-remove-roles" role="tab" aria-controls="add-or-remove-roles" aria-selected="false">Add or Remove role(s)</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="manage-roles-tab" data-toggle="tab" href="#manage-roles" role="tab" aria-controls="manage-roles" aria-selected="false">Manage roles</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="add" role="tabpanel" aria-labelledby="add-tab">
+              <br>
+              <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>E-Mail</th>
+                      <th>Username</th>
+                      <th>Role</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1,001</td>
+                      <td>Lorem</td>
+                      <td>ipsum</td>
+                      <td>dolor</td>
+                      <td>sit</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,002</td>
+                      <td>amet</td>
+                      <td>consectetur</td>
+                      <td>adipiscing</td>
+                      <td>elit</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,003</td>
+                      <td>Integer</td>
+                      <td>nec</td>
+                      <td>odio</td>
+                      <td>Praesent</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,003</td>
+                      <td>libero</td>
+                      <td>Sed</td>
+                      <td>cursus</td>
+                      <td>ante</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,004</td>
+                      <td>dapibus</td>
+                      <td>diam</td>
+                      <td>Sed</td>
+                      <td>nisi</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,005</td>
+                      <td>Nulla</td>
+                      <td>quis</td>
+                      <td>sem</td>
+                      <td>at</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,006</td>
+                      <td>nibh</td>
+                      <td>elementum</td>
+                      <td>imperdiet</td>
+                      <td>Duis</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,007</td>
+                      <td>sagittis</td>
+                      <td>ipsum</td>
+                      <td>Praesent</td>
+                      <td>mauris</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,008</td>
+                      <td>Fusce</td>
+                      <td>nec</td>
+                      <td>tellus</td>
+                      <td>sed</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,009</td>
+                      <td>augue</td>
+                      <td>semper</td>
+                      <td>porta</td>
+                      <td>Mauris</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,010</td>
+                      <td>massa</td>
+                      <td>Vestibulum</td>
+                      <td>lacinia</td>
+                      <td>arcu</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,011</td>
+                      <td>eget</td>
+                      <td>nulla</td>
+                      <td>Class</td>
+                      <td>aptent</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,012</td>
+                      <td>taciti</td>
+                      <td>sociosqu</td>
+                      <td>ad</td>
+                      <td>litora</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,013</td>
+                      <td>torquent</td>
+                      <td>per</td>
+                      <td>conubia</td>
+                      <td>nostra</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,014</td>
+                      <td>per</td>
+                      <td>inceptos</td>
+                      <td>himenaeos</td>
+                      <td>Curabitur</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td>1,015</td>
+                      <td>sodales</td>
+                      <td>ligula</td>
+                      <td>in</td>
+                      <td>libero</td>
+                      <td>doloripsum</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-
-          <div class="container">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget nibh in eros euismod bibendum. Nulla facilisi. Suspendisse a feugiat lectus. Ut a justo elit. Ut vehicula sapien purus, id placerat lorem consequat quis. Nunc non enim efficitur mauris egestas semper. Aenean varius ipsum vitae dui dapibus, dictum vulputate enim aliquam. Morbi in ultrices elit, ullamcorper ultrices leo. Maecenas aliquam ornare diam, in accumsan erat ornare ac. In nunc augue, vulputate vitae tristique sed, consequat a orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur malesuada pulvinar imperdiet. Fusce venenatis est et velit elementum, id congue felis egestas.</p>
-
-            <p>Morbi commodo tellus id eros fermentum, sed placerat risus rutrum. Maecenas ac luctus mi. Fusce convallis metus id est interdum congue. Nullam vehicula augue dui, at venenatis erat molestie sed. Etiam aliquet ut ante eget euismod. Aliquam lacinia eros vitae massa luctus, eu dapibus libero gravida. Ut erat mi, faucibus quis congue id, pulvinar sed eros. Vestibulum eget ultrices augue. Duis mollis lorem erat, a fermentum dui iaculis vel. Morbi a est vitae ex molestie placerat. Proin eu efficitur eros. In tempus, elit in laoreet vestibulum, enim mi cursus augue, a tempus risus nunc sed eros. Ut lobortis sed turpis semper tempus. Vestibulum pellentesque volutpat vulputate.</p>
-
-            <p>Sed vestibulum maximus pulvinar. In hac habitasse platea dictumst. Curabitur dictum eu elit non condimentum. Ut rutrum eu magna non convallis. Donec iaculis ex vitae malesuada accumsan. Vestibulum congue diam vitae ante porttitor tincidunt. Vivamus imperdiet cursus mi. Phasellus facilisis consectetur pretium. Nullam ultrices mi non ligula scelerisque eleifend. Ut et aliquam sapien. Ut nec tempus risus, in pellentesque eros. Fusce pretium volutpat justo, at luctus leo lacinia quis. Etiam porta dolor sit amet leo blandit scelerisque ut sit amet magna. Proin enim nulla, rhoncus id egestas at, laoreet ultricies mi.</p>
-          </div>
-
-          <h2>Section title</h2>
-          <div class="table-responsive">
-            <table class="table table-striped table-sm">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="tab-pane fade" id="remove" role="tabpanel" aria-labelledby="remove-tab">...</div>
+            <div class="tab-pane fade" id="add-or-remove-roles" role="tabpanel" aria-labelledby="add-or-remove-roles-tab">...</div>
+              <div class="tab-pane fade" id="manage-roles" role="tabpanel" aria-labelledby="manage-roles-tab">...</div>
           </div>
         </main>
       </div>
