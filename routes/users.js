@@ -60,7 +60,7 @@ function checkIfLoggedIn(req, res, next) {
 }
 
 // Dashboard page - GET
-router.get('/dashboard', [ensureAuthenticated, isManagerOrAdmin], function(req, res) {
+router.get('/dashboard', /*[ensureAuthenticated, isManagerOrAdmin],*/ function(req, res) {
   res.render('dashboard', {
     title: 'Dashboard',
     showTitle: false
