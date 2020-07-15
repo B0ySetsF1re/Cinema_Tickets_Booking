@@ -7,6 +7,14 @@ class RBAC {
     this.roles = roles; // Initialising roles property
   }
 
+  // Add new role from the frontend side
+  addRole(role, can, inherits = false) {
+    this.role[role] = {
+      can: can,
+      inherits: (!inherits) ? inherits : undefined
+    }
+  }
+
   can(role, operation) {
     // Check if role exists
     if(!this.roles[role]) {
