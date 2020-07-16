@@ -106,6 +106,30 @@ body {
 }
 
 /*
+* Custom nav-tabs color format & tables border styles + indents
+*/
+
+.nav-tabs .nav-link {
+  color: #dc3545;
+}
+
+.nav-tabs .nav-link:hover {
+  color: #b32936;
+}
+
+.nav-tabs .nav-link.active:hover {
+  color: inherit;
+}
+
+table.table.table-striped.table-sm {
+  margin-top: .25rem;
+}
+
+table.table.table-striped.table-sm thead {
+  border-top-style: hidden;
+}
+
+/*
 * Custom form-control height
 *
 .form-control {
