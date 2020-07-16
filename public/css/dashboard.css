@@ -111,6 +111,7 @@ body {
 
 .nav-tabs .nav-link {
   color: #dc3545;
+  font-weight: bold;
 }
 
 .nav-tabs .nav-link:hover {
