@@ -106,7 +106,7 @@
           </ul>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="add" role="tabpanel" aria-labelledby="add-tab">
-              <div class="table-responsive">
+              <!--<div class="table-responsive">
                 <form method="post" acion="/users/dashboard/users-add">
                   <table class="table table-striped table-sm">
                     <thead>
@@ -151,11 +151,56 @@
                     </tbody>
                   </table>
                 </form>
-              </div>
+              </div>-->
             </div>
-            <div class="tab-pane fade" id="remove" role="tabpanel" aria-labelledby="remove-tab">...</div>
+            <div class="tab-pane fade" id="remove" role="tabpanel" aria-labelledby="remove-tab">
+              <form method="post" acion="/users/dashboard/users-remove">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>#</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>E-Mail</th>
+                      <th>Username</th>
+                      <th>Role</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input class="checkbox-red" type="checkbox" name="users"></td>
+                      <td> 1,001</td>
+                      <td>Lorem</td>
+                      <td>ipsum</td>
+                      <td>dolor</td>
+                      <td>sit</td>
+                      <td>doloripsum</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" name="users"></td>
+                      <td>1,002</td>
+                      <td>amet</td>
+                      <td>consectetur</td>
+                      <td>adipiscing</td>
+                      <td>elit</td>
+                      <td>alsapsum</td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" name="users"></td>
+                      <td>1,003</td>
+                      <td>Integer</td>
+                      <td>nec</td>
+                      <td>odio</td>
+                      <td>Praesent</td>
+                      <td>omrum</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+            </div>
             <div class="tab-pane fade" id="add-or-remove-roles" role="tabpanel" aria-labelledby="add-or-remove-roles-tab">...</div>
-              <div class="tab-pane fade" id="manage-roles" role="tabpanel" aria-labelledby="manage-roles-tab">...</div>
+            <div class="tab-pane fade" id="manage-roles" role="tabpanel" aria-labelledby="manage-roles-tab">...</div>
           </div>
         </main>
       </div>

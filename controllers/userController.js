@@ -29,7 +29,7 @@ db.getCollectionNames(function(err, colNames) {
       }
     });
 
-    reject('Roles collection hasn\'t been found - defining RBAC with the role model...');
+    reject(new Error('Roles collection hasn\'t been found - defining RBAC with the role model...'));
   });
 
   promise.then (

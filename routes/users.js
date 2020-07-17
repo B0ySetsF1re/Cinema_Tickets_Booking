@@ -10,7 +10,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 
 // Dashboard page - GET
-router.get('/dashboard', [userController.ensureAuthenticated, userController.isManagerOrAdmin], function(req, res) {
+router.get('/dashboard', /*[userController.ensureAuthenticated, userController.isManagerOrAdmin],*/ function(req, res) {
   res.render('dashboard', {
     title: 'Dashboard',
     showTitle: false
