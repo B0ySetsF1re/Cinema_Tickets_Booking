@@ -2,15 +2,89 @@
 const mongojs = require('mongojs');
 var db = mongojs('cinema_booking', ['users']);
 
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
+
 const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const { check, body, validationResult } = require('express-validator'); // const validationResult = require('express-validator');
 
-const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
+const roleModel = require('../models/roleModel');
+const rbacController = require('../controllers/rbacController');
+let RBAC = {};
 
 // Getting current time (for debugging)
 const _Time = require('../debugging/timeDisplay');
+
+// Before applying role models and instentiating RBAC, we need to check if the roles collection exists
+db.getCollectionNames(function(err, colNames) {
+  if(err) {
+    return console.log(err);
+  }
+
+  let promise = new Promise((resolve, reject) => {
+    colNames.forEach(function(name) {
+      if(name == 'roles') {
+        resolve('Roles collection has been found in the database - no need to define RBAC with the role model...');
+      }
+    });
+
+    reject('Roles collection hasn\'t been found - defining RBAC with the role model...');
+  });
+
+  promise.then (
+    result => {
+      console.log(_Time.getTime() + result);
+
+      db.roles.findOne({}, { _id: 0 }, function(err, doc) {
+        if(err) {
+          return console.log(err);
+        }
+
+        RBAC = new rbacController(doc);
+      });
+    },
+    error => {
+      console.log(_Time.getTime() + error);
+
+      db.roles.insert(roleModel);
+      RBAC = new rbacController(roleModel);
+
+      setTimeout(() => { console.log(_Time.getTime() + 'Done!') }, 1000);
+    }
+  );
+});
+
+// Check if user is authenticated
+exports.ensureAuthenticated = (req, res, next) => {
+  if(req.isAuthenticated()) {
+    return next();
+  }
+  req.flash('error', 'You are not authorized to access this page!');
+  res.redirect('/users/login');
+}
+
+// Another user's role check, more logical
+exports.isManagerOrAdmin = (req, res, next) => {
+  if(RBAC.roleExists(req.user.role)) {
+    if(req.user.role == 'admin' || req.user.role == 'manager') {
+      return next();
+    }
+  }
+  req.flash('error', 'You need to be at least manager to access this page!');
+  res.redirect('/');
+}
+
+// Prevent user to access login page when they are actually logged in
+exports.checkIfLoggedIn = (req, res, next) => {
+  if(req.isAuthenticated()) {
+    // req.flash('error', 'You are already logged in!');
+    res.location('/users/error/already-logged-in');
+    res.redirect('/users/error/already-logged-in');
+  } else {
+    next();
+  }
+}
 
 exports.expressValRules = [
   check('first_name').not().isEmpty().withMessage('First Name field is required!'),

@@ -9,58 +9,8 @@ const router = express.Router();
 // Connecting userController (for signup/login and access controll logics)
 const userController = require('../controllers/userController');
 
-// Connecting roleController (to manage access controll by roles)
-const roleModel = require('../models/roleModel'); // Probably will add an anonymous function or some to check if there are roles in the database
-const rbacController = require('../controllers/rbacController');
-const RBAC = new rbacController(roleModel);
-
-// Getting current time (for debugging)
-const _Time = require('../debugging/timeDisplay');
-
-// Check if user is authenticated
-function ensureAuthenticated(req, res, next) {
-  if(req.isAuthenticated()) {
-    return next();
-  }
-  req.flash('error', 'You are not authorized to access this page!');
-  res.redirect('/users/login');
-}
-
-// Check user's role (custom middleware for RBAC) => can function should be used in specifical scenarios
-/*function checkForManager(req, res, next) {
-  if(req.user.role == 'admin' || req.user.role == 'manager') {
-    if(RBAC.can(req.user.role, 'manage_orders')) {
-      return next();
-    }
-  }
-  req.flash('error', 'You need to be at least manager to access this page!');
-  res.redirect('/');
-}*/
-
-// Another user's role check, more logical
-function isManagerOrAdmin(req, res, next) {
-  if(RBAC.roleExists(req.user.role)) {
-    if(req.user.role == 'admin' || req.user.role == 'manager') {
-      return next();
-    }
-  }
-  req.flash('error', 'You need to be at least manager to access this page!');
-  res.redirect('/');
-}
-
-// Prevent user to access login page when they are actually logged in
-function checkIfLoggedIn(req, res, next) {
-  if(req.isAuthenticated()) {
-    // req.flash('error', 'You are already logged in!');
-    res.location('/users/error/already-logged-in');
-    res.redirect('/users/error/already-logged-in');
-  } else {
-    next();
-  }
-}
-
 // Dashboard page - GET
-router.get('/dashboard', /*[ensureAuthenticated, isManagerOrAdmin],*/ function(req, res) {
+router.get('/dashboard', [userController.ensureAuthenticated, userController.isManagerOrAdmin], function(req, res) {
   res.render('dashboard', {
     title: 'Dashboard',
     showTitle: false
@@ -94,7 +44,7 @@ app.get('/user', function(req, res) {
 });*/
 
 // Login page - GET
-router.get('/login', checkIfLoggedIn, function(req, res) {
+router.get('/login', userController.checkIfLoggedIn, function(req, res) {
   res.render('login', {
     title: 'Please sign in',
     showTitle: false
@@ -115,7 +65,7 @@ router.get('/error/already-logged-in', function(req, res) {
 });
 
 // Register page - GET
-router.get('/register', checkIfLoggedIn, function(req, res) {
+router.get('/register', userController.checkIfLoggedIn, function(req, res) {
   res.render('register', {
     title: 'Register',
     showTitle: false
