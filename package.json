@@ -1,6 +1,6 @@
 {
   "name": "cinema_booking_rbac_mvc",
-  "version": "0.3",
+  "version": "0.3.1",
   "description": "Website for cinema tickets booking",
   "main": "app.js",
   "scripts": {
