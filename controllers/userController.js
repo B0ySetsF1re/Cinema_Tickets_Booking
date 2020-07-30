@@ -55,6 +55,19 @@ db.getCollectionNames(function(err, colNames) {
   );
 });
 
+function sendExpressErrors(res, errObj, page) {
+  res.render(page, {
+    errors: errObj.errors.array(),
+    title: page,
+    first_name: errObj.first_name,
+    last_name: errObj.last_name,
+    email: errObj.email,
+    username: errObj.username,
+    password: errObj.password,
+    password_confirm: errObj.password_confirm
+  });
+}
+
 // Check if user is authenticated
 exports.ensureAuthenticated = (req, res, next) => {
   if(req.isAuthenticated()) {
@@ -112,16 +125,29 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
     console.log(_Time.getTime() + 'There are errors!');
     console.log(errors.array());
 
-    res.render('register', {
-      errors: errors.array(),
-      title: 'Register',
-      first_name: first_name,
-      last_name: last_name,
-      email: email,
-      username: username,
-      password: password,
-      password_confirm: password_confirm
-    });
+    if(req.originalUrl != '/users/dashboard/add') {
+      res.render('register', {
+        errors: errors.array(),
+        title: 'Register',
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        username: username,
+        password: password,
+        password_confirm: password_confirm
+      });
+    } else {
+      res.render('dashboard', {
+        errors: errors.array(),
+        title: 'Register',
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        username: username,
+        password: password,
+        password_confirm: password_confirm
+      });
+    }
   } else {
     console.log(_Time.getTime() + 'Success!');
 
@@ -137,8 +163,6 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
             res.send(err);
           } else {
             console.log(_Time.getTime() + 'User Added...');
-
-            console.log(req.originalUrl);
 
             if(req.originalUrl != '/users/dashboard/add') {
               // Success message
