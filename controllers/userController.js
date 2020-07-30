@@ -55,6 +55,18 @@ db.getCollectionNames(function(err, colNames) {
   );
 });
 
+function getUsrFormData(req) {
+  return {
+    errors: {},
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email,
+    username: req.body.username,
+    password: req.body.password,
+    password_confirm: req.body.password_confirm
+  };
+}
+
 function sendExpressErrors(res, errObj, page) {
   res.render(page, {
     errors: errObj.errors.array(),
@@ -117,7 +129,9 @@ exports.expressValRules = [
 exports.register = (req, res) => { // Perhaps will divide this function a bit
   // Checking for errors
   const errors = validationResult(req);
-  const { first_name, last_name, email, username, password, password_confirm } = req.body;
+  let usrSrcData = getUsrFormData(req); //const { first_name, last_name, email, username, password, password_confirm } = req.body;
+                                        // let usrSrcData = getUsrFormData(req) => getUsrFormData(req, errors.array());
+  usrSrcData.errors = errors;
 
   // Finds the validation errors in this request and wraps them in an object with handy functions
   if(!errors.isEmpty()) {
@@ -125,33 +139,15 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
     console.log(_Time.getTime() + 'There are errors!');
     console.log(errors.array());
 
-    if(req.originalUrl != '/users/dashboard/add') {
-      res.render('register', {
-        errors: errors.array(),
-        title: 'Register',
-        first_name: first_name,
-        last_name: last_name,
-        email: email,
-        username: username,
-        password: password,
-        password_confirm: password_confirm
-      });
+    if(req.originalUrl != '/users/dashboard/add') { // checking under what route the coude was executed
+      sendExpressErrors(res, usrSrcData, 'register');  // rendering "register" ejs view and sending local variables for it
     } else {
-      res.render('dashboard', {
-        errors: errors.array(),
-        title: 'Register',
-        first_name: first_name,
-        last_name: last_name,
-        email: email,
-        username: username,
-        password: password,
-        password_confirm: password_confirm
-      });
+      sendExpressErrors(res, usrSrcData, 'dashboard'); // rendering "dashboard" ejs view and sending local variables for it
     }
   } else {
     console.log(_Time.getTime() + 'Success!');
 
-    const newUser = new User(first_name, last_name, email, username, password);
+    const newUser = new User(usrSrcData.first_name, usrSrcData.last_name, usrSrcData.email, usrSrcData.username, usrSrcData.password);
 
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(newUser.password, salt, function(err, hash) {
