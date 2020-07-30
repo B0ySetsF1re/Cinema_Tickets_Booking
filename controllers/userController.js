@@ -104,7 +104,7 @@ exports.expressValRules = [
 exports.register = (req, res) => { // Perhaps will divide this function a bit
   // Checking for errors
   const errors = validationResult(req);
-  const { first_name, last_name, email, username, password, confirm_password } = req.body;
+  const { first_name, last_name, email, username, password, password_confirm } = req.body;
 
   // Finds the validation errors in this request and wraps them in an object with handy functions
   if(!errors.isEmpty()) {
