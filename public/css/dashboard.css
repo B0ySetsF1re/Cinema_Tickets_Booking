@@ -175,7 +175,11 @@ div#add div.alert {
   margin-top: 1rem;
 }
 
-#regFormContent {
+div#add div#messages {
+  margin-top: 1rem;
+}
+
+form#regFormContent {
   margin-top: 1rem;
 }
 
