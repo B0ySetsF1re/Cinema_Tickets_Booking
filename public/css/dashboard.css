@@ -171,11 +171,7 @@ table.table.table-striped.table-sm thead {
 * Add's tab registration form styling
 */
 
-div#add div.alert {
-  margin-top: 1rem;
-}
-
-div#add div#messages {
+div#add div.alert, div#add div#messages {
   margin-top: 1rem;
 }
 
