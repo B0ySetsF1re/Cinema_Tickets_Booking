@@ -138,14 +138,25 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
           } else {
             console.log(_Time.getTime() + 'User Added...');
 
-            // Success message
-            req.flash('success', 'You are now registered and can login!');
+            console.log(req.originalUrl);
 
-            // Redirect after Registration
-            res.location('/users/login'); // Setting the response header.
-            res.redirect('/users/login'); // Setting the status to 302, setting the header (using set.location)
-                               // and sending a nice response body saying that the user is being redirected,
-                               // it also renders a link if their browser doesn't automatically redirect them for some reason.
+            if(req.originalUrl != '/users/dashboard/add') {
+              // Success message
+              req.flash('success', 'You are now registered and can login!');
+
+              // Redirect after Registration
+              res.location('/users/login'); // Setting the response header.
+              res.redirect('/users/login'); // Setting the status to 302, setting the header (using set.location)
+                                 // and sending a nice response body saying that the user is being redirected,
+                                 // it also renders a link if their browser doesn't automatically redirect them for some reason.
+            } else {
+              // Success message
+              req.flash('success', 'User has been added successfully!');
+
+              // Redirect after Registration
+              res.location('/users/dashboard');
+              res.redirect('/users/dashboard'); // res.redirect('/users/dashboard/add');
+            }
             /*res.json({
               data: newUser,
               accessToken

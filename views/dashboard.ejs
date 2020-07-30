@@ -106,6 +106,57 @@
           </ul>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="add" role="tabpanel" aria-labelledby="add-tab">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <%- messages() %>
+                    <form id="regFormContent" method="post" action="/users/dashboard/add">
+                      <div class="form-group row">
+                        <label class="col-sm-4 col-form-label-lg">First Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="first_name" value="<%= (locals.first_name)?first_name:'' %>" class="form-control form-control-lg" required autofocus>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-4 col-form-label-lg">Last Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="last_name" value="<%= (locals.last_name)?last_name:'' %>" class="form-control form-control-lg" required autofocus>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-4 col-form-label-lg">Email address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="email" value="<%= (locals.email)?email:'' %>" class="form-control form-control-lg" required autofocus>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-4 col-form-label-lg">Username</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="username" value="<%= (locals.username)?username:'' %>" class="form-control form-control-lg" required autofocus>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-4 col-form-label-lg">Password</label>
+                        <div class="col-sm-8">
+                          <input type="password" name="password" value="<%= (locals.password)?password:'' %>" class="form-control form-control-lg" required>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-4 col-form-label-lg">Password Confirm</label>
+                        <div class="col-sm-8">
+                          <input type="password" name="password_confirm" value="<%= (locals.password_confirm)?password_confirm:'' %>" class="form-control form-control-lg" required>
+                        </div>
+                      </div>
+                      <div class="form-group row justify-content-end formSubmitGroup">
+                          <!--<div class="form-check d-none">
+                            <input type="checkbox" name="remember_me" class="form-check-input form-check-input-lg" checked>
+                          </div>-->
+                          <div class="col-sm-3"><button type="submit" class="btn btn-lg btn-danger col-sm-12">Submit</button></div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="tab-pane fade" id="remove" role="tabpanel" aria-labelledby="remove-tab">
               <form method="post" acion="/users/dashboard/users-remove">

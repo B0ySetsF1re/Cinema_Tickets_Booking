@@ -17,6 +17,14 @@ router.get('/dashboard', /*[userController.ensureAuthenticated, userController.i
   });
 });
 
+// Dashboard page (Add operation) - GET
+router.get('/dashboard/add', function(req, res) {
+  res.redirect('/users/dashboard');
+});
+
+// Dashboard page (Add operation) - POST
+router.post('/dashboard/add', userController.expressValRules, userController.register);
+
 // Other (TBD)
 
 /*app.get('/manager', function(req, res) {
