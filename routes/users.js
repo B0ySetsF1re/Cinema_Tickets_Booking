@@ -62,10 +62,22 @@ router.get('/login', userController.checkIfLoggedIn, function(req, res) {
 // Login error page - GET
 router.get('/error/already-logged-in', function(req, res) {
   if(req.user) {
-    res.render('alreadyAuthError', {
+    res.render('authError', {
       title: 'Error occured',
       showTitle: false,
       msg: 'You are already logged in!'
+    });
+  } else {
+    res.status(404).send('404 Not found');
+  }
+});
+
+router.get('/error/already-logged-out', function(req, res) {
+  if(!req.user) {
+    res.render('authError', {
+      title: 'Error occured',
+      showTitle: false,
+      msg: 'You have already logged out!'
     });
   } else {
     res.status(404).send('404 Not found');
@@ -94,7 +106,7 @@ router.post('/login',
   });
 
 // Logout page - GET
-router.get('/logout', function(req, res) {
+router.get('/logout', userController.checkIfLoggedOut, function(req, res) {
   req.logout();
   req.flash('success', 'You have logged out');
   res.redirect('/users/login');

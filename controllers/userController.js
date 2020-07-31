@@ -113,6 +113,15 @@ exports.checkIfLoggedIn = (req, res, next) => {
   }
 }
 
+exports.checkIfLoggedOut = (req, res, next) => {
+  if(!req.isAuthenticated()) {
+    res.location('/users/error/already-logged-out');
+    res.redirect('/users/error/already-logged-out');
+  } else {
+    next();
+  }
+}
+
 exports.expressValRules = [
   check('first_name').not().isEmpty().withMessage('First Name field is required!'),
   check('last_name').not().isEmpty().withMessage('Last Name field is required!'),
