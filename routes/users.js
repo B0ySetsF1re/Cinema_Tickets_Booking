@@ -25,32 +25,6 @@ router.get('/dashboard/add', function(req, res) {
 // Dashboard page (Add operation) - POST
 router.post('/dashboard/add', userController.expressValRules, userController.register);
 
-// Other (TBD)
-
-/*app.get('/manager', function(req, res) {
-  //res.send('Manager page');
-  res.render('manager', {
-    title: 'Manager page',
-    showTitle: true
-  });
-});
-
-app.get('/seller', function(req, res) {
-  //res.send('Seller page');
-  res.render('seller', {
-    title: 'Seller page',
-    showTitle: true
-  });
-});
-
-app.get('/user', function(req, res) {
-  //res.send('User page');
-  res.render('user', {
-    title: 'User page',
-    showTitle: true
-  });
-});*/
-
 // Login page - GET
 router.get('/login', userController.checkIfLoggedIn, function(req, res) {
   res.render('login', {
