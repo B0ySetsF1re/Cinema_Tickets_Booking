@@ -106,7 +106,7 @@
           </ul>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="add" role="tabpanel" aria-labelledby="add-tab">
-              <div class="container-fluid">
+              <div class="jumbotron container-fluid">
                 <div class="row">
                   <div class="col-sm-6">
                     <% if (locals.errors) { %>
@@ -153,10 +153,22 @@
                           <input type="password" name="password_confirm" value="<%= (locals.password_confirm)?password_confirm:'' %>" class="form-control form-control-lg" required>
                         </div>
                       </div>
+                      <div class="form-group row">
+                        <label class="col-sm-4 col-form-label-lg">Select role</label>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input-lg" type="radio" name="rolesRadioOptions" id="Basic" value="basic" checked>
+                          <label class="form-check-label col-form-label-lg" for="Basic">Basic</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input-lg" type="radio" name="rolesRadioOptions" id="Manager" value="manager">
+                          <label class="form-check-label col-form-label-lg" for="Manager">Manager</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input-lg" type="radio" name="rolesRadioOptions" id="Admin" value="admin">
+                          <label class="form-check-label col-form-label-lg" for="Admin">Administrator</label>
+                        </div>
+                      </div>
                       <div class="form-group row justify-content-end formSubmitGroup">
-                          <!--<div class="form-check d-none">
-                            <input type="checkbox" name="remember_me" class="form-check-input form-check-input-lg" checked>
-                          </div>-->
                           <div class="col-sm-3"><button type="submit" class="btn btn-lg btn-danger col-sm-12">Submit</button></div>
                       </div>
                     </form>

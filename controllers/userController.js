@@ -25,7 +25,7 @@ db.getCollectionNames(function(err, colNames) {
   let promise = new Promise((resolve, reject) => {
     colNames.forEach(function(name) {
       if(name == 'roles') {
-        resolve('Roles collection has been found in the database - no need to define RBAC with the role model...');
+        resolve('Roles collection has been found in the database...');
       }
     });
 
@@ -63,7 +63,8 @@ function getUsrFormData(req) {
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
-    password_confirm: req.body.password_confirm
+    password_confirm: req.body.password_confirm,
+    role_option: req.body.rolesRadioOptions
   };
 }
 
@@ -76,7 +77,8 @@ function sendExpressErrors(res, errObj, page) {
     email: errObj.email,
     username: errObj.username,
     password: errObj.password,
-    password_confirm: errObj.password_confirm
+    password_confirm: errObj.password_confirm,
+    role_option: errObj.role_option
   });
 }
 
@@ -147,7 +149,7 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
   } else {
     console.log(_Time.getTime() + 'Success!');
 
-    const newUser = new User(usrSrcData.first_name, usrSrcData.last_name, usrSrcData.email, usrSrcData.username, usrSrcData.password);
+    const newUser = new User(usrSrcData.first_name, usrSrcData.last_name, usrSrcData.email, usrSrcData.username, usrSrcData.password, usrSrcData.role_option);
 
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(newUser.password, salt, function(err, hash) {
@@ -158,7 +160,7 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
             console.log(_Time.getTime() + 'An error occurred when tried to add a new user to the database!');
             res.send(err);
           } else {
-            console.log(_Time.getTime() + 'User Added...');
+            console.log(_Time.getTime() + 'User has been added with role: ' + newUser.role);
 
             if(req.originalUrl != '/users/dashboard/add') {
               // Success message

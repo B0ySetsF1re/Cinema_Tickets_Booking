@@ -171,13 +171,35 @@ table.table.table-striped.table-sm thead {
 * Add's tab registration form styling
 */
 
+div.alert.alert-danger {
+  font-size: 1rem;
+}
+
 div#add div.alert, div#add div#messages {
   margin-top: 1rem;
 }
 
-form#regFormContent {
+div#add, form#regFormContent {
   margin-top: 1rem;
 }
+
+div#add {
+  width: 95%;
+}
+
+.form-check-inline .form-check-input-lg {
+  width: 18px; /* 20px */
+  height: 18px; /* 20px */
+  position: inherit;
+  margin-top: inherit;
+  margin-right: inherit;
+  margin-left: inherit;
+}
+
+.jumbotron {
+  padding-top: 2rem;
+}
+
 
 /*
 * Custom flash messages styling - will be changed later.
@@ -193,6 +215,7 @@ form#regFormContent {
   color: #721c24;
   background-color: #f8d7da;
   border-color: #f5c6cb;
+  font-size: 1rem;
 }
 
 #messages ul.success {
@@ -205,6 +228,7 @@ form#regFormContent {
   color: #155724;
   background-color: #d4edda;
   border-color: #c3e6cb;
+  font-size: 1rem;
 }
 /* These styles were taken from bootstrap's alert classess */
 
