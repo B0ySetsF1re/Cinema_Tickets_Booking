@@ -191,33 +191,19 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td><input class="checkbox-red" type="checkbox" name="users"></td>
-                      <td> 1,001</td>
-                      <td>Lorem</td>
-                      <td>ipsum</td>
-                      <td>dolor</td>
-                      <td>sit</td>
-                      <td>doloripsum</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="users"></td>
-                      <td>1,002</td>
-                      <td>amet</td>
-                      <td>consectetur</td>
-                      <td>adipiscing</td>
-                      <td>elit</td>
-                      <td>alsapsum</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="users"></td>
-                      <td>1,003</td>
-                      <td>Integer</td>
-                      <td>nec</td>
-                      <td>odio</td>
-                      <td>Praesent</td>
-                      <td>omrum</td>
-                    </tr>
+                    <% if(locals.users) { %>
+                      <% users.forEach(function(user, index) { %>
+                        <tr>
+                          <td><input class="checkbox-red" type="checkbox" name="users"></td>
+                          <td><%= index + 1 %></td>
+                          <td><%= user.first_name %></td>
+                          <td><%= user.last_name %></td>
+                          <td><%= user.email %></td>
+                          <td><%= user.username %></td>
+                          <td><%= user.role %></td>
+                        </tr>
+                      <% }); %>
+                    <% } %>
                   </tbody>
                 </table>
               </form>

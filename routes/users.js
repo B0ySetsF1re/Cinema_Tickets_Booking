@@ -10,10 +10,16 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 
 // Dashboard page - GET
-router.get('/dashboard', /*[userController.ensureAuthenticated, userController.isManagerOrAdmin],*/ function(req, res) {
-  res.render('dashboard', {
-    title: 'Dashboard',
-    showTitle: false
+router.get('/dashboard', /*[userController.ensureAuthenticated, userController.isManagerOrAdmin],*/ function(req, res) { // Soon dashboard will have different routes
+  userController.getAllUsers(function(err, docs) {
+    if(err) {
+      return console.log(err);
+    }
+
+    res.render('dashboard', {
+      title: 'Dashboard',
+      users: docs
+    });
   });
 });
 
@@ -28,8 +34,7 @@ router.post('/dashboard/add', userController.expressValRules, userController.reg
 // Login page - GET
 router.get('/login', userController.checkIfLoggedIn, function(req, res) {
   res.render('login', {
-    title: 'Please sign in',
-    showTitle: false
+    title: 'Please sign in'
   });
 });
 
@@ -38,7 +43,6 @@ router.get('/error/already-logged-in', function(req, res) {
   if(req.user) {
     res.render('authError', {
       title: 'Error occured',
-      showTitle: false,
       msg: 'You are already logged in!'
     });
   } else {
@@ -50,7 +54,6 @@ router.get('/error/already-logged-out', function(req, res) {
   if(!req.user) {
     res.render('authError', {
       title: 'Error occured',
-      showTitle: false,
       msg: 'You have already logged out!'
     });
   } else {
@@ -61,8 +64,7 @@ router.get('/error/already-logged-out', function(req, res) {
 // Register page - GET
 router.get('/register', userController.checkIfLoggedIn, function(req, res) {
   res.render('register', {
-    title: 'Register',
-    showTitle: false
+    title: 'Register'
   });
 });
 

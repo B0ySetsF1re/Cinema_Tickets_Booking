@@ -64,7 +64,7 @@ function getUsrFormData(req) {
     username: req.body.username,
     password: req.body.password,
     password_confirm: req.body.password_confirm,
-    role_option: (req.body.rolesRadioOptions != undefined) ? req.body.rolesRadioOptions : 'basic'
+    role_option: (req.body.rolesRadioOptions != undefined) ? req.body.rolesRadioOptions : 'basic' // ternarry operation -> needs to be implemented for the regular registration form
   };
 }
 
@@ -240,3 +240,7 @@ passport.use(new localStrategy(
 }));
 
 exports.passport = passport;
+
+exports.getAllUsers = function(callback) {
+  db.users.find({}, { _id: 0 }, callback);
+}
