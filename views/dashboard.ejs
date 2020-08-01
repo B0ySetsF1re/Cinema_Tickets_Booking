@@ -87,7 +87,7 @@
               <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
                 <span data-feather="calendar"></span>
                 This week
-              </button
+              </button>
           </div>-->
 
           <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -95,7 +95,7 @@
               <a class="nav-link active" id="add-tab" data-toggle="tab" href="#add" role="tab" aria-controls="add" aria-selected="true">Add</a>
             </li>
             <li class="nav-item" role="presentation">
-              <a class="nav-link" id="remove-tab" data-toggle="tab" href="#remove" role="tab" aria-controls="remove" aria-selected="false">Remove</a>
+              <a class="nav-link" id="manage-tab" data-toggle="tab" href="#manage" role="tab" aria-controls="manage" aria-selected="false">Manage</a>
             </li>
             <li class="nav-item" role="presentation">
               <a class="nav-link" id="add-or-remove-roles-tab" data-toggle="tab" href="#add-or-remove-roles" role="tab" aria-controls="add-or-remove-roles" aria-selected="false">Add or Remove role(s)</a>
@@ -176,8 +176,8 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="remove" role="tabpanel" aria-labelledby="remove-tab">
-              <form method="post" acion="/users/dashboard/users-remove">
+            <div class="tab-pane fade" id="manage" role="tabpanel" aria-labelledby="manage-tab">
+              <form method="post" acion="/users/dashboard/users-manage">
                 <table class="table table-striped table-sm">
                   <thead>
                     <tr>
