@@ -64,7 +64,7 @@ function getUsrFormData(req) {
     username: req.body.username,
     password: req.body.password,
     password_confirm: req.body.password_confirm,
-    role_option: req.body.rolesRadioOptions
+    role_option: (req.body.rolesRadioOptions != undefined) ? req.body.rolesRadioOptions : 'basic'
   };
 }
 
