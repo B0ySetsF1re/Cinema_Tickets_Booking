@@ -200,6 +200,26 @@ div#add {
   padding-top: 2rem;
 }
 
+/*
+* Manage's tab styling
+*/
+
+div#manage div.input-group.mb-3 {
+  margin-top: 1rem;
+}
+
+/*div#manage div.input-group.mb-3 {
+  border: 1px solid #696969;
+}*/
+
+div#manage div.input-group.mb-3 button.btn.btn-secondary {
+  background-color: #696969;
+}
+
+div#manage div.input-group.mb-3 button.btn.btn-secondary:hover, div#manage div.input-group.mb-3 button.btn.btn-secondary:focus {
+  background-color: #797575;
+}
+
 
 /*
 * Custom flash messages styling - will be changed later.
