@@ -168,6 +168,16 @@ table.table.table-striped.table-sm thead {
 }
 
 /*
+* Dashboard welcome page styling
+*/
+
+div#dashboardWelcome {
+  color: #696969;
+  margin-top: 5%;
+}
+
+
+/*
 * Add's tab registration form styling
 */
 
@@ -175,15 +185,15 @@ div.alert.alert-danger {
   font-size: 1rem;
 }
 
-div#add div.alert, div#add div#messages {
+div#create div.alert, div#create div#messages {
   margin-top: 1rem;
 }
 
-div#add, form#regFormContent {
+div#create, form#regFormContent {
   margin-top: 1rem;
 }
 
-div#add {
+div#create {
   width: 95%;
 }
 

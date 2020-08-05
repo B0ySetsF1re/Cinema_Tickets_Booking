@@ -150,10 +150,10 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
     console.log(_Time.getTime() + 'There are errors!');
     console.log(errors.array());
 
-    if(req.originalUrl != '/users/dashboard/add') { // checking under what route the coude was executed
+    if(req.originalUrl != '/users/dashboard/users-management/create') { // checking under what route the coude was executed
       sendExpressErrors(res, usrSrcData, 'register');  // rendering "register" ejs view and sending local variables for it
     } else {
-      sendExpressErrors(res, usrSrcData, 'dashboard'); // rendering "dashboard" ejs view and sending local variables for it
+      sendExpressErrors(res, usrSrcData, 'dashboard_users'); // rendering "dashboard" ejs view and sending local variables for it
     }
   } else {
     console.log(_Time.getTime() + 'Success!');
@@ -171,7 +171,7 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
           } else {
             console.log(_Time.getTime() + 'User has been added with role: ' + newUser.role);
 
-            if(req.originalUrl != '/users/dashboard/add') {
+            if(req.originalUrl != '/users/dashboard/users-management/create') {
               // Success message
               req.flash('success', 'You are now registered and can login!');
 
@@ -185,8 +185,8 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
               req.flash('success', 'User has been added successfully!');
 
               // Redirect after Registration
-              res.location('/users/dashboard');
-              res.redirect('/users/dashboard'); // res.redirect('/users/dashboard/add');
+              res.location('/users/dashboard/users-management');
+              res.redirect('/users/dashboard/users-management'); // res.redirect('/users/dashboard/add');
             }
             /*res.json({
               data: newUser,

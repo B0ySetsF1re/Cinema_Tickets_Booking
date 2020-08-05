@@ -9,23 +9,30 @@ const router = express.Router();
 // Connecting userController (for signup/login and access controll logics)
 const userController = require('../controllers/userController');
 
-// Dashboard page - GET
-router.get('/dashboard', /*[userController.ensureAuthenticated, userController.isManagerOrAdmin],*/ function(req, res) { // Soon dashboard will have different routes
+
+router.get('/dashboard', function(req, res) {
+  res.render('dashboard', {
+    title: 'Dashboard'
+  });
+});
+
+// Dashboard users management page - GET
+router.get('/dashboard/users-management', /*[userController.ensureAuthenticated, userController.isManagerOrAdmin],*/ function(req, res) { // Soon dashboard will have different routes
   userController.getAllUsers(function(err, docs) {
     if(err) {
       return console.log(err);
     }
 
-    res.render('dashboard', {
-      title: 'Dashboard',
+    res.render('dashboard_users', {
+      title: 'Dashboard - Users',
       users: docs
     });
   });
 });
 
 // Dashboard page (Add operation) - GET
-router.get('/dashboard/add', function(req, res) {
-  res.redirect('/users/dashboard');
+router.get('/dashboard/users-management/create', function(req, res) {
+  res.redirect('/users/dashboard/users-management');
 });
 
 router.get('/dashboard/movies', function(req, res) {
@@ -34,14 +41,14 @@ router.get('/dashboard/movies', function(req, res) {
   });
 });
 
-router.get('/dashboard/orders_and_rents', function(req, res) {
+router.get('/dashboard/orders-and-rents', function(req, res) {
   res.render('dashboard_orders_and_rents', {
     title: 'Dashboard - Orders & Rents'
   });
 });
 
 // Dashboard page (Add operation) - POST
-router.post('/dashboard/add', userController.expressValRules, userController.register);
+router.post('/dashboard/users-management/create', userController.expressValRules, userController.register);
 
 // Login page - GET
 router.get('/login', userController.checkIfLoggedIn, function(req, res) {
