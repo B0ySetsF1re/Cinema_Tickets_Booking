@@ -80,10 +80,10 @@
 
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="create-tab" data-toggle="tab" href="#create" role="tab" aria-controls="create" aria-selected="true">Create</a>
+          <a class="nav-link" id="create-tab" data-toggle="tab" href="#create" role="tab" aria-controls="create" aria-selected="false">Create</a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link" id="manage-tab" data-toggle="tab" href="#manage" role="tab" aria-controls="manage" aria-selected="false">Manage</a>
+          <a class="nav-link active" id="manage-tab" data-toggle="tab" href="#manage" role="tab" aria-controls="manage" aria-selected="true">Manage</a>
         </li>
         <li class="nav-item" role="presentation">
           <a class="nav-link" id="manage-roles-tab" data-toggle="tab" href="#manage-roles" role="tab" aria-controls="manage-roles" aria-selected="false">Roles management & config</a>
@@ -91,7 +91,7 @@
       </ul>
 
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="create" role="tabpanel" aria-labelledby="create-tab">
+        <div class="tab-pane fade" id="create" role="tabpanel" aria-labelledby="create-tab">
 
           <div class="jumbotron container-fluid">
             <div class="row">
@@ -168,26 +168,26 @@
 
             </div>
 
-            <div class="tab-pane fade" id="manage" role="tabpanel" aria-labelledby="manage-tab">
+            <div class="tab-pane fade show active" id="manage" role="tabpanel" aria-labelledby="manage-tab">
 
               <div class="container-fluid">
                 <div class="row">
                   <div class="col">
-                    <form method="post" acion="/users/dashboard/users-manage">
+                    <form method="post" action="/users/dashboard/users-management/manage">
 
                       <div class="row">
                         <div class="col-sm-4">
 
                           <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                              <button class="btn btn-secondary" type="button">Apply</button>
+                              <button class="btn btn-secondary" type="submit">Apply</button>
                             </div>
-                            <select class="custom-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+                            <select name="action" class="custom-select">
                               <option selected>Select action...</option>
-                              <option value="1">Delete</option>
-                              <option value="2">Change role</option>
-                              <option value="3">Export</option>
-                              <option value="3">Export all data</option>
+                              <option value="Delete">Delete</option>
+                              <option value="Change role">Change role</option>
+                              <option value="Export">Export</option>
+                              <option value="Export all data">Export all data</option>
                             </select>
                           </div>
 
@@ -214,7 +214,7 @@
                               <% if(locals.users) { %>
                                 <% users.forEach(function(user, index) { %>
                                   <tr>
-                                    <td><input class="checkbox-red" type="checkbox" name="users"></td>
+                                    <td><input class="checkbox-red" type="checkbox" name="users" value="<%= user.email %>"></td>
                                     <td><%= index + 1 %></td>
                                     <td><%= user.first_name %></td>
                                     <td><%= user.last_name %></td>

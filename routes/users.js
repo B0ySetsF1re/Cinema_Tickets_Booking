@@ -9,7 +9,7 @@ const router = express.Router();
 // Connecting userController (for signup/login and access controll logics)
 const userController = require('../controllers/userController');
 
-
+// Dashboard page - GET
 router.get('/dashboard', function(req, res) {
   res.render('dashboard', {
     title: 'Dashboard'
@@ -30,25 +30,50 @@ router.get('/dashboard/users-management', /*[userController.ensureAuthenticated,
   });
 });
 
-// Dashboard page (Add operation) - GET
+// Dashboard users management create page (Add operation) - GET
 router.get('/dashboard/users-management/create', function(req, res) {
   res.redirect('/users/dashboard/users-management');
 });
 
+// Dashboard movies page - GET
 router.get('/dashboard/movies', function(req, res) {
   res.render('dashboard_movies', {
     title: 'Dashboard - Movies'
   });
 });
 
+// Dashboard orders and rents page - GET
 router.get('/dashboard/orders-and-rents', function(req, res) {
   res.render('dashboard_orders_and_rents', {
     title: 'Dashboard - Orders & Rents'
   });
 });
 
-// Dashboard page (Add operation) - POST
+// Dashboard users page (Create operation) - POST
 router.post('/dashboard/users-management/create', userController.expressValRules, userController.register);
+
+// Dashboard users page (Manage operations) - POST
+router.post('/dashboard/users-management/manage', function(req, res) {
+  if(req.body.action == 'Delete') {
+    let users = req.body.users;
+
+    if(typeof users == 'string') {
+      users = users.split();
+    }
+
+    users.forEach(function(user) {
+      userController.removeUsers(user, function(err, result) {
+        if(err) {
+          return console.log(err);
+        }
+
+        console.log(result);
+      });
+    });
+  }
+
+  res.redirect('/users/dashboard/users-management');
+});
 
 // Login page - GET
 router.get('/login', userController.checkIfLoggedIn, function(req, res) {

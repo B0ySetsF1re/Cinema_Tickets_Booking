@@ -244,3 +244,7 @@ exports.passport = passport;
 exports.getAllUsers = function(callback) {
   db.users.find({}, { _id: 0, password: 0 }, callback);
 }
+
+exports.removeUsers = function(email, callback) {
+  db.users.remove({ email: email }, callback);
+}
