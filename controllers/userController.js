@@ -242,5 +242,5 @@ passport.use(new localStrategy(
 exports.passport = passport;
 
 exports.getAllUsers = function(callback) {
-  db.users.find({}, { _id: 0 }, callback);
+  db.users.find({}, { _id: 0, password: 0 }, callback);
 }
