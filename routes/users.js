@@ -28,6 +28,18 @@ router.get('/dashboard/add', function(req, res) {
   res.redirect('/users/dashboard');
 });
 
+router.get('/dashboard/movies', function(req, res) {
+  res.render('dashboard_movies', {
+    title: 'Dashboard - Movies'
+  });
+});
+
+router.get('/dashboard/orders_and_rents', function(req, res) {
+  res.render('dashboard_orders_and_rents', {
+    title: 'Dashboard - Orders & Rents'
+  });
+});
+
 // Dashboard page (Add operation) - POST
 router.post('/dashboard/add', userController.expressValRules, userController.register);
 
