@@ -245,6 +245,27 @@ exports.getAllUsers = function(callback) {
   db.users.find({}, { _id: 0, password: 0 }, callback);
 }
 
-exports.removeUsers = function(email, callback) {
+/*exports.removeUsers = function(email, callback) {
   db.users.remove({ email: email }, callback);
+}*/
+
+function startUsersRemoval(email, callback) {
+  db.users.remove({ email: email }, callback);
+}
+
+exports.removeUsers = function(users) {
+  if(typeof users == 'string') {
+    users = users.split();
+  }
+
+  users.forEach(function(user) {
+    startUsersRemoval(user, function(err, result) {
+      if(err) {
+        return console.log(err);
+      }
+
+      console.log(_Time.getTime() + 'User(s) removed:');
+      console.log(result);
+    });
+  });
 }

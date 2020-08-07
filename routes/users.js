@@ -55,24 +55,9 @@ router.post('/dashboard/users-management/create', userController.expressValRules
 // Dashboard users page (Manage operations) - POST
 router.post('/dashboard/users-management/manage', function(req, res) {
   if(req.body.action == 'Delete') {
-    let users = req.body.users;
-
-    if(typeof users == 'string') {
-      users = users.split();
-    }
-
-    users.forEach(function(user) {
-      userController.removeUsers(user, function(err, result) {
-        if(err) {
-          return console.log(err);
-        }
-
-        console.log(result);
-      });
-    });
+    userController.removeUsers(req.body.users);
+    res.redirect('/users/dashboard/users-management');
   }
-
-  res.redirect('/users/dashboard/users-management');
 });
 
 // Login page - GET
