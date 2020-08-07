@@ -245,7 +245,7 @@ exports.getAllUsers = function(callback) {
   db.users.find({}, { _id: 0, password: 0 }, callback);
 }
 
-exports.usersMgmntInit = function(lastAction, res) {
+exports.usersMgmntInit = function(lastAction, req, res) {
   this.getAllUsers(function (err, docs) {
     if(err) {
       return console.log(err);
@@ -254,7 +254,8 @@ exports.usersMgmntInit = function(lastAction, res) {
     res.render('dashboard_users', {
       title: 'Dashboard - Users',
       users: docs,
-      lastAction: lastAction
+      lastSelAction: lastAction,
+      lastSelUsers: (typeof req.body.users == 'string') ? req.body.users.split() : req.body.users
     });
   });
 };

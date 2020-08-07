@@ -18,7 +18,7 @@ router.get('/dashboard', function(req, res) {
 
 // Dashboard users management page - GET
 router.get('/dashboard/users-management', /*[userController.ensureAuthenticated, userController.isManagerOrAdmin],*/ function(req, res) { // Soon dashboard will have different routes
-  userController.usersMgmntInit('Initial page GET request', res);
+  userController.usersMgmntInit('Initial page GET request', req, res);
 });
 
 // Dashboard users management create page (Add operation) - GET
@@ -51,7 +51,7 @@ router.post('/dashboard/users-management/manage', function(req, res) {
   } else if(req.body.action == 'Change role') {
     console.log(req.body);
     res.location('/users/dashboard/users-management');
-    userController.usersMgmntInit(req.body.action, res);
+    userController.usersMgmntInit(req.body.action, req, res);
   }
 });
 
