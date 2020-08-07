@@ -245,6 +245,20 @@ exports.getAllUsers = function(callback) {
   db.users.find({}, { _id: 0, password: 0 }, callback);
 }
 
+exports.usersMgmntInit = function(lastAction, res) {
+  this.getAllUsers(function (err, docs) {
+    if(err) {
+      return console.log(err);
+    }
+
+    res.render('dashboard_users', {
+      title: 'Dashboard - Users',
+      users: docs,
+      lastAction: lastAction
+    });
+  });
+};
+
 /*exports.removeUsers = function(email, callback) {
   db.users.remove({ email: email }, callback);
 }*/
