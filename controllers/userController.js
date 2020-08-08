@@ -113,6 +113,7 @@ exports.checkIfLoggedIn = (req, res, next) => {
   }
 }
 
+// Prevent user to access logout page/route when they actually logged out
 exports.checkIfLoggedOut = (req, res, next) => {
   if(!req.isAuthenticated()) {
     res.location('/users/error/already-logged-out');
@@ -122,6 +123,7 @@ exports.checkIfLoggedOut = (req, res, next) => {
   }
 }
 
+// Function, which returns promise to then validate email duplications in the database through the express-validator
 exports.emailDupCheck = function(value) {
   return new Promise(function(resolve, reject) {
     db.users.findOne({ email: value }, function(err, docs) {
@@ -129,28 +131,27 @@ exports.emailDupCheck = function(value) {
         return console.log(err);
       }
       if(docs != null) {
-        resolve('Records found...')
+        reject(new Error('Email address is already in use!'));
       }
-      reject(new Error('No records found!'));
+      resolve('No records found!');
     });
   });
 }
 
+// Registration form express-validator errors configuration
 exports.expressValRules = [
   check('first_name').not().isEmpty().withMessage('First Name field is required!'),
   check('last_name').not().isEmpty().withMessage('Last Name field is required!'),
   check('email').isEmail().withMessage('Please enter a vailid email address!'),
-  /*body('email').custom(value => {
-    let promise = exports.emailDupChec(value);
+  body('email').custom(value => {
+    let promise = exports.emailDupCheck(value);
 
-    return promise.then(
-      result => {
-        if(result) {
-          return Promise.reject('Email address is already in use!');
-        }
+    return promise.catch( // We don't need to process fulfilled state, so we are using "catch" instead of "then" operator
+      error => {
+        return Promise.reject(error);
       }
     );
-  }),*/
+  }),
   check('password').not().isEmpty().withMessage('Password field is required!'),
   body('password_confirm').custom((value, { req }) => {
     if (value !== req.body.password) {
