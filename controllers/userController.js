@@ -245,8 +245,8 @@ exports.getAllUsers = function(callback) {
   db.users.find({}, { _id: 0, password: 0 }, callback);
 }
 
-exports.usersMgmntInit = function(lastAction, req, res) {
-  this.getAllUsers(function (err, docs) {
+exports.usersMgmntInit = function(req, res) {
+  exports.getAllUsers(function (err, docs) {
     if(err) {
       return console.log(err);
     }
@@ -254,7 +254,7 @@ exports.usersMgmntInit = function(lastAction, req, res) {
     res.render('dashboard_users', {
       title: 'Dashboard - Users',
       users: docs,
-      lastSelAction: lastAction,
+      lastSelAction: (req.body.action) ? req.body.action : 'Initial GET request',
       lastSelUsers: (typeof req.body.users == 'string') ? req.body.users.split() : req.body.users
     });
   });
@@ -264,7 +264,7 @@ exports.usersMgmntInit = function(lastAction, req, res) {
   db.users.remove({ email: email }, callback);
 }*/
 
-function startUsersRemoval(email, callback) {
+exports.startUsersRemoval = function(email, callback) {
   db.users.remove({ email: email }, callback);
 }
 
@@ -274,7 +274,7 @@ exports.removeUsers = function(users) {
   }
 
   users.forEach(function(user) {
-    startUsersRemoval(user, function(err, result) {
+    exports.startUsersRemoval(user, function(err, result) {
       if(err) {
         return console.log(err);
       }
