@@ -126,14 +126,29 @@ exports.checkIfLoggedOut = (req, res, next) => {
 // Function, which returns promise to then validate email duplications in the database through the express-validator
 exports.emailDupCheck = function(value) {
   return new Promise(function(resolve, reject) {
-    db.users.findOne({ email: value }, function(err, docs) {
+    db.users.findOne({ email: value }, function(err, doc) {
       if(err) {
         return console.log(err);
       }
-      if(docs != null) {
+      if(doc != null) {
         reject(new Error('Email address is already in use!'));
       }
-      resolve('No records found!');
+      resolve('No records found...');
+    });
+  });
+}
+
+// The same function as above but here we are checking usernames duplications respectively
+exports.usernameDupCheck = function(value) {
+  return new Promise(function(resolve, reject) {
+    db.users.findOne({ username: value }, function(err, doc) {
+      if(err) {
+        return console.log(err);
+      }
+      if(doc != null) {
+        reject(new Error('Username is already in use!'));
+      }
+      resolve('No records found...');
     });
   });
 }
@@ -149,6 +164,15 @@ exports.expressValRules = [
     return promise.catch( // We don't need to process fulfilled state, so we are using "catch" instead of "then" operator
       error => {
         return Promise.reject(error);
+      }
+    );
+  }),
+  body('username').custom(value => {
+    let promise = exports.usernameDupCheck(value);
+
+    return promise.catch(
+      error => {
+        return Promise.reject(error); // Check comment for the previous promise catch operator
       }
     );
   }),
