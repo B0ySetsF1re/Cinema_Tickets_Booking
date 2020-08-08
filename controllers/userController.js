@@ -122,10 +122,35 @@ exports.checkIfLoggedOut = (req, res, next) => {
   }
 }
 
+exports.emailDupCheck = function(value) {
+  return new Promise(function(resolve, reject) {
+    db.users.findOne({ email: value }, function(err, docs) {
+      if(err) {
+        return console.log(err);
+      }
+      if(docs != null) {
+        resolve('Records found...')
+      }
+      reject(new Error('No records found!'));
+    });
+  });
+}
+
 exports.expressValRules = [
   check('first_name').not().isEmpty().withMessage('First Name field is required!'),
   check('last_name').not().isEmpty().withMessage('Last Name field is required!'),
   check('email').isEmail().withMessage('Please enter a vailid email address!'),
+  /*body('email').custom(value => {
+    let promise = exports.emailDupChec(value);
+
+    return promise.then(
+      result => {
+        if(result) {
+          return Promise.reject('Email address is already in use!');
+        }
+      }
+    );
+  }),*/
   check('password').not().isEmpty().withMessage('Password field is required!'),
   body('password_confirm').custom((value, { req }) => {
     if (value !== req.body.password) {
