@@ -22,5 +22,5 @@ function getRegFormContent() {
 }
 
 window.onload = function() {
-  
+  getRegFormContent();
 }

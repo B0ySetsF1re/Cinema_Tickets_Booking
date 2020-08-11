@@ -21,11 +21,6 @@ router.get('/dashboard/users-management', /*[userController.ensureAuthenticated,
   userController.usersMgmntInit(req, res);
 });
 
-// Dashboard users management create page (Add operation) - GET
-/*router.get('/dashboard/users-management/create', function(req, res) {
-  res.redirect('/users/dashboard/users-management');
-});*/
-
 // Dashboard movies page - GET
 router.get('/dashboard/movies', function(req, res) {
   res.render('dashboard_movies', {
