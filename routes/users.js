@@ -35,6 +35,10 @@ router.get('/dashboard/orders-and-rents', function(req, res) {
   });
 });
 
+router.post('/dashboard/users-management/tabs', function(req, res) {
+  console.log('Request received...');
+});
+
 // Dashboard users page (Create operation) - POST
 router.post('/dashboard/users-management/create', userController.expressValRules, userController.register);
 

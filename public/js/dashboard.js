@@ -21,6 +21,21 @@ function getRegFormContent() {
   xhttp.send(); // Sending content to the dashboard page
 }
 
+function renderManageTabReq() {
+
+  let xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if(xhttp.readyState == 4 && xhttp.status == 200) {
+
+    }
+  }
+
+  xhttp.open('POST', '/users/dashboard/users-management/tabs', true);
+  xhttp.setRequestHeader("Content-Type", "application/json");
+  xhttp.send();
+}
+
 window.onload = function() {
-  
+  document.getElementById("manage-tab").addEventListener('click', renderManageTabReq);
 }
