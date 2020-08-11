@@ -22,9 +22,9 @@ router.get('/dashboard/users-management', /*[userController.ensureAuthenticated,
 });
 
 // Dashboard users management create page (Add operation) - GET
-router.get('/dashboard/users-management/create', function(req, res) {
+/*router.get('/dashboard/users-management/create', function(req, res) {
   res.redirect('/users/dashboard/users-management');
-});
+});*/
 
 // Dashboard movies page - GET
 router.get('/dashboard/movies', function(req, res) {
