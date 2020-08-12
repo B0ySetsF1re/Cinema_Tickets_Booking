@@ -171,14 +171,13 @@ table.table.table-striped.table-sm thead {
 * Dashboard welcome page styling
 */
 
-div#dashboardWelcome {
+div.dashboard-title {
   color: #696969;
   margin-top: 5%;
 }
 
-
 /*
-* Add's tab registration form styling
+* Create's tab registration form styling
 */
 
 div.alert.alert-danger {
@@ -229,6 +228,10 @@ div#manage div.input-group.mb-3 button.btn.btn-secondary {
 div#manage div.input-group.mb-3 button.btn.btn-secondary:hover, div#manage div.input-group.mb-3 button.btn.btn-secondary:focus {
   background-color: #797575;
 }
+
+/*
+* Manage role's tab styling
+*/
 
 
 /*
