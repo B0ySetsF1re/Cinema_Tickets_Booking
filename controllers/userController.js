@@ -303,7 +303,7 @@ exports.usersMgmntInit = function(req, res) {
 
     res.render('dashboard_users', {
       title: 'Dashboard - Users',
-      tab: 'Manage',
+      manageTab: true,
       users: docs,
       lastSelAction: (req.body.action) ? req.body.action : 'Initial GET request',
       lastSelUsers: (typeof req.body.users == 'string') ? req.body.users.split() : req.body.users

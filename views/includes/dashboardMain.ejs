@@ -1,0 +1,13 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="create-tab" data-toggle="tab" href="#create" role="tab" aria-controls="create" aria-selected="true">Create</a>
+  </li>
+  <li class="nav-item" role="presentation">
+      <form method="post" action="/users/dashboard/users-management/manage-init">
+        <a class="nav-link" id="manage-tab" data-toggle="tab" href="#manage" role="tab" aria-controls="manage" aria-selected="false" type="submit" onclick="this.closest('form').submit();return false;">Manage</a>
+      </form>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="manage-roles-tab" data-toggle="tab" href="#manage-roles" role="tab" aria-controls="manage-roles" aria-selected="false">Roles management & config</a>
+  </li>
+</ul>

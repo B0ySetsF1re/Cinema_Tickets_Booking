@@ -25,9 +25,17 @@ router.get('/dashboard/users-management', /*[userController.ensureAuthenticated,
       title: 'Dashboard - Users'
     });
   }*/
-  res.render('dashboard_users', { // userController.usersMgmntInit(req, res);
+  /*res.render('dashboard_users', { // userController.usersMgmntInit(req, res);
     title: 'Dashboard - Users'
-  });
+  });*/
+
+  if(req.query.tab == 'manage') {
+    userController.usersMgmntInit(req, res);
+  } else {
+    res.render('dashboard_users', { // userController.usersMgmntInit(req, res);
+      title: 'Dashboard - Users'
+    });
+  }
 });
 
 // Dashboard movies page - GET
@@ -45,9 +53,9 @@ router.get('/dashboard/orders-and-rents', function(req, res) {
 });
 
 router.post('/dashboard/users-management/manage-init', function(req, res) {
-  res.location('/users/dashboard/users-management');
-  userController.usersMgmntInit(req, res);
-  //res.redirect('/users/dashboard/users-management?tab=' + encodeURIComponent('manage-tab'));
+  //res.location('/users/dashboard/users-management');
+  //userController.usersMgmntInit(req, res);
+  res.redirect('/users/dashboard/users-management?tab=' + encodeURIComponent('manage'));
 });
 
 // Dashboard users page (Create operation) - POST
