@@ -38,6 +38,10 @@ router.get('/dashboard/users-management', /*[userController.ensureAuthenticated,
   }
 });
 
+router.get('/dashboard/users-management/manage/:page', function(req, res) {
+  res.send('Manage tab with users per page...');
+});
+
 // Dashboard movies page - GET
 router.get('/dashboard/movies', function(req, res) {
   res.render('dashboard_movies', {
