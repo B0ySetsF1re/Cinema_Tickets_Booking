@@ -39,4 +39,4 @@ You can also use **[nodemon](https://www.npmjs.com/package/nodemon)** package, s
 
 ## Finally
 
-The **git** utility should allow you to run node and npm from it's shell, so give it a try. :)
+If you're under Windows, then **git** utility should allow you to run node and npm from it's shell, so give it a try. :)
