@@ -295,6 +295,7 @@ exports.getAllUsers = function(callback) {
   db.users.find({}, { _id: 0, password: 0 }, callback);
 }
 
+// Render all users at one page
 exports.usersMgmntInit = function(req, res) {
   exports.getAllUsers(function (err, docs) {
     if(err) {
@@ -311,6 +312,7 @@ exports.usersMgmntInit = function(req, res) {
   });
 };
 
+// Rendering users separated with pages
 exports.usersMgmntInitPerPage = async function(req, res, next) {
   const resPerPage = 10;
   const page = req.params.page || 1;
@@ -346,10 +348,12 @@ exports.usersMgmntInitPerPage = async function(req, res, next) {
   next();
 }
 
+// Starting execution of the users removal
 exports.startUsersRemoval = function(id, callback) {
   db.users.remove({ _id: mongojs.ObjectId(id) }, callback);
 }
 
+// Initializing users removal
 exports.removeUsers = function(users) {
   if(typeof users == 'string') {
     users = users.split();

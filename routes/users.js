@@ -39,6 +39,7 @@ router.get('/dashboard/orders-and-rents', function(req, res) {
   });
 });
 
+// Dashboard manage tab initialization - POST
 router.post('/dashboard/users-management/manage-init', function(req, res) {
   //res.location('/users/dashboard/users-management');
   //userController.usersMgmntInit(req, res);
@@ -83,6 +84,7 @@ router.get('/error/already-logged-in', function(req, res) {
   }
 });
 
+// Check if user already logged out - GET
 router.get('/error/already-logged-out', function(req, res) {
   if(!req.user) {
     res.render('authError', {
