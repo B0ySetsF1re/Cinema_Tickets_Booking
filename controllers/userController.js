@@ -311,12 +311,12 @@ exports.usersMgmntInit = function(req, res) {
   });
 };
 
-exports.usersMgmntInitPerPage = async function(req, res) {
+exports.usersMgmntInitPerPage = async function(req, res, next) {
   const resPerPage = 10;
   const page = req.params.page || 1;
 
   const foundUsers = await new Promise((resolve, reject) => {
-    db.users.find({}).limit(resPerPage).skip((resPerPage * page) - resPerPage, function(err, users) {
+    db.users.find({}, { password: 0 }).limit(resPerPage).skip((resPerPage * page) - resPerPage, function(err, users) {
       if(err) {
         reject(new Error(err));
       }
@@ -342,10 +342,12 @@ exports.usersMgmntInitPerPage = async function(req, res) {
     lastSelAction: (req.body.action) ? req.body.action : 'Initial GET request',
     lastSelUsers: (typeof req.body.users == 'string') ? req.body.users.split() : req.body.users
   });
+
+  next();
 }
 
-exports.startUsersRemoval = function(email, callback) {
-  db.users.remove({ email: email }, callback);
+exports.startUsersRemoval = function(id, callback) {
+  db.users.remove({ _id: mongojs.ObjectId(id) }, callback);
 }
 
 exports.removeUsers = function(users) {

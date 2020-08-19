@@ -18,24 +18,9 @@ router.get('/dashboard', function(req, res) {
 
 // Dashboard users management page - GET
 router.get('/dashboard/users-management', /*[userController.ensureAuthenticated, userController.isManagerOrAdmin],*/ function(req, res) { // Soon dashboard will have different routes
-  /*if(req.query.valid == 'manage-tab') {
-    userController.usersMgmntInit(req, res);
-  } else {
-    res.render('dashboard_users', { // userController.usersMgmntInit(req, res);
-      title: 'Dashboard - Users'
-    });
-  }*/
-  /*res.render('dashboard_users', { // userController.usersMgmntInit(req, res);
+  res.render('dashboard_users', { // userController.usersMgmntInit(req, res);
     title: 'Dashboard - Users'
-  });*/
-
-  if(req.query.tab == 'manage') {
-    userController.usersMgmntInit(req, res);
-  } else {
-    res.render('dashboard_users', { // userController.usersMgmntInit(req, res);
-      title: 'Dashboard - Users'
-    });
-  }
+  });
 });
 
 router.get('/dashboard/users-management/manage/:page', userController.usersMgmntInitPerPage);
@@ -68,12 +53,14 @@ router.post('/dashboard/users-management/create', userController.expressValRules
 router.post('/dashboard/users-management/manage', function(req, res) {
   if(req.body.action == 'Delete') {
     userController.removeUsers(req.body.users);
-    res.redirect('/users/dashboard/users-management?tab=' + encodeURIComponent('manage'));
+    //res.redirect('/users/dashboard/users-management?tab=' + encodeURIComponent('manage'));
+    res.redirect('/users/dashboard/users-management/manage/' + req.params.page);
   } else if(req.body.action == 'Change role') {
     console.log(req.body);
     //res.redirect('/users/dashboard/users-management?tab=' + encodeURIComponent('manage'));
-    res.location('/users/dashboard/users-management');
-    userController.usersMgmntInit(req, res);
+    //res.location('/users/dashboard/users-management');
+    //userController.usersMgmntInit(req, res);
+    res.redirect('/users/dashboard/users-management/manage/' + req.params.page);
   }
 });
 
