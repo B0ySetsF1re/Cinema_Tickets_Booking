@@ -38,9 +38,7 @@ router.get('/dashboard/users-management', /*[userController.ensureAuthenticated,
   }
 });
 
-router.get('/dashboard/users-management/manage/:page', function(req, res) {
-  res.send('Manage tab with users per page...');
-});
+router.get('/dashboard/users-management/manage/:page', userController.usersMgmntInitPerPage);
 
 // Dashboard movies page - GET
 router.get('/dashboard/movies', function(req, res) {
@@ -59,7 +57,8 @@ router.get('/dashboard/orders-and-rents', function(req, res) {
 router.post('/dashboard/users-management/manage-init', function(req, res) {
   //res.location('/users/dashboard/users-management');
   //userController.usersMgmntInit(req, res);
-  res.redirect('/users/dashboard/users-management?tab=' + encodeURIComponent('manage'));
+  //res.redirect('/users/dashboard/users-management?tab=' + encodeURIComponent('manage'));
+  res.redirect('/users/dashboard/users-management/manage/1');
 });
 
 // Dashboard users page (Create operation) - POST

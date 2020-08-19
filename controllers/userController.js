@@ -125,7 +125,7 @@ exports.checkIfLoggedOut = (req, res, next) => {
 
 // Function, which returns promise to then validate email duplications in the database through the express-validator
 exports.emailDupCheck = function(value) {
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     db.users.findOne({ email: value }, function(err, doc) {
       if(err) {
         return console.log(err);
@@ -140,7 +140,7 @@ exports.emailDupCheck = function(value) {
 
 // The same function as above but here we are checking usernames duplications respectively
 exports.usernameDupCheck = function(value) {
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     db.users.findOne({ username: value }, function(err, doc) {
       if(err) {
         return console.log(err);
@@ -311,9 +311,38 @@ exports.usersMgmntInit = function(req, res) {
   });
 };
 
-/*exports.removeUsers = function(email, callback) {
-  db.users.remove({ email: email }, callback);
-}*/
+exports.usersMgmntInitPerPage = async function(req, res) {
+  const resPerPage = 10;
+  const page = req.params.page || 1;
+
+  const foundUsers = await new Promise((resolve, reject) => {
+    db.users.find({}).limit(resPerPage).skip((resPerPage * page) - resPerPage, function(err, users) {
+      if(err) {
+        reject(new Error(err));
+      }
+      resolve(users);
+    });
+  });
+
+  const numOfUsers = await new Promise((resolve, reject) => {
+    db.users.count({}, function(err, result) {
+      if(err) {
+        reject(new Error(err));
+      }
+      resolve(result);
+    });
+  });
+
+  res.render('dashboard_users', {
+    title: 'Dashboard - Users',
+    manageTab: true,
+    users: foundUsers,
+    currentPage: page,
+    pages: Math.ceil(numOfUsers / resPerPage),
+    lastSelAction: (req.body.action) ? req.body.action : 'Initial GET request',
+    lastSelUsers: (typeof req.body.users == 'string') ? req.body.users.split() : req.body.users
+  });
+}
 
 exports.startUsersRemoval = function(email, callback) {
   db.users.remove({ email: email }, callback);
