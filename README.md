@@ -8,7 +8,7 @@ Before cloning this repository, you need to have Node.js and NPM installed, here
 * Please check out this **[link](https://nodejs.org/en/)** to install **Node.js** and **NPM**.
 * To install and configure MongoDB, check out its **[official documentation](https://docs.mongodb.com/manual/installation/)** (please note that to properly run MongoDB and access Mongo Shell - you need to configure MongoDB to run as a system service).
 
-## Cloning repository
+## Cloning the repository
 
 Make sure you have the git utility installed on your computer. Check out **[this](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)** article on how to set it up.
 
