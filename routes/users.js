@@ -50,7 +50,7 @@ router.post('/dashboard/users-management/manage-init', function(req, res) {
 router.post('/dashboard/users-management/create', userController.expressValRules, userController.register);
 
 // Dashboard users page (Manage operations) - POST
-router.post('/dashboard/users-management/manage', function(req, res) {
+router.post('/dashboard/users-management/manage/:page', function(req, res) {
   if(req.body.action == 'Delete') {
     userController.removeUsers(req.body.users);
     //res.redirect('/users/dashboard/users-management?tab=' + encodeURIComponent('manage'));
