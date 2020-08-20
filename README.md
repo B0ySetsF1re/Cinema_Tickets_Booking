@@ -50,7 +50,7 @@ router.get('/dashboard/users-management', [userController.ensureAuthenticated, u
 
 Here you should look for ``` [userController.ensureAuthenticated, userController.isManagerOrAdmin]```. Those are callbacks being put into the array, you can comment it with ```/* */```, which then allow you to enter the dashboard's user section and create a user with preferred role with the web form mentioned before.
 
-In the near future there will be rule for all dashboard routes, which will check the authentication and the role of a user.
+In the near future there will be a rule for all dashboard routes, which will check the authentication and the role of a user.
 
 ## Finally
 
