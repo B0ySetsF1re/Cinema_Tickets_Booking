@@ -37,6 +37,21 @@ You can also use **[nodemon](https://www.npmjs.com/package/nodemon)** package, s
   npm install <package_name> --save
   ```
 
+## How to get Admin role?
+As of now there is no way to obtain this role via UI ***(the dashboard actually has the web form allowing to register a user with any preferred role, however you already need to have Admin or Manager role to at least get into the dashboard).*** In order to get Admin/Manager role, you have to find the ```/users/dashboard/users-management``` route, the code of which is located here: ```./routes/users.js```. Here is the example:
+
+```javascript
+router.get('/dashboard/users-management', [userController.ensureAuthenticated, userController.isManagerOrAdmin], function(req, res) {
+  res.render('dashboard_users', {
+    title: 'Dashboard - Users'
+  });
+});
+```
+
+Here you should look for ``` [userController.ensureAuthenticated, userController.isManagerOrAdmin]```. Those are callbacks being put into the array, you can comment it with ```/* */```, which then allow you to enter the dashboard's user section and create a user with preferred role with the web form mentioned before.
+
+In the near future there will be rule for all dashboard routes, which will check the authentication and the role of a user.
+
 ## Finally
 
-If you're under Windows, then **git** utility should allow you to run node and npm from it's shell, so give it a try. :)
+If you're under Windows, then **git** utility should allow you to run node and npm from its shell, so give it a try. :)
