@@ -246,26 +246,50 @@
                                     </li>
                                     <!-- -->
 
-                                     <% if(currentPage != 1) { %>
-                                       <% if((currentPage % 3) == 0 || ((currentPage - 1) % 3) == 0) { %>
-                                         <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + (parseInt(currentPage) - 2) %>"><%= parseInt(currentPage) - 2 %> </a></li>
-                                         <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + (parseInt(currentPage) - 1) %>"> <%= parseInt(currentPage) - 1 %> </a></li>
-                                         <li class="page-item active" aria-current="page">
-                                           <a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + currentPage %>"> <%= currentPage %> <span class="sr-only">(current)</span></a>
-                                         </li>
-                                       <% } else if((currentPage % 2) == 0 || ((currentPage - 1) % 2) == 0) { %>
-                                        <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + (parseInt(currentPage) - 1) %>"> <%= parseInt(currentPage) - 1 %> </a></li>
-                                        <li class="page-item active" aria-current="page">
-                                          <a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + currentPage %>"> <%= currentPage %> <span class="sr-only">(current)</span></a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + (parseInt(currentPage) + 1) %>"> <%= parseInt(currentPage) + 1 %> </a></li>
+                                    <% if(currentPage <= 5) { %>
+                                      <% for(let i = 1; i <= 5; i++) { %>
+                                        <% if(i == currentPage) { %>
+                                          <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + parseInt(currentPage) %>"> <%= currentPage %> <span class="sr-only">(current)</span></a>
+                                          </li>
+                                        <% } else { %>
+                                          <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + parseInt(i) %>"> <%= i %> </a></li>
+                                        <% } %>
                                       <% } %>
-                                    <% } else if((currentPage % 2) != 0 || ((currentPage - 1) % 2) != 0) { %>
-                                      <li class="page-item active" aria-current="page">
-                                        <a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + currentPage %>"> <%= currentPage %> <span class="sr-only">(current)</span></a>
-                                      </li>
-                                      <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + (parseInt(currentPage) + 1) %>"> <%= parseInt(currentPage) + 1 %> </a></li>
-                                      <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + (parseInt(currentPage) + 2) %>"> <%= parseInt(currentPage) + 2 %> </a></li>
+                                      <% if(pages > 5) { %>
+                                        <li class="page-item disabled"><a class="page-link" href="#"> ... </a></li>
+                                        <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + parseInt(pages) %>"> <%= pages %> </a></li>
+                                      <% } %>
+                                    <% } else if(currentPage > 5) { %>
+                                      <% if((pages - currentPage) <= 3) { %>
+                                        <% for(let i = 1; i <= 3; i++) { %>
+                                          <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + parseInt(i) %>"> <%= i %> </a></li>
+                                        <% } %>
+                                        <li class="page-item disabled"><a class="page-link" href="#"> ... </a></li>
+                                        <% for(let i = pages - (pages - currentPage); i <= pages; i++) { %>
+                                          <% if(i == currentPage) { %>
+                                            <li class="page-item active" aria-current="page">
+                                              <a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + parseInt(currentPage) %>"> <%= currentPage %> <span class="sr-only">(current)</span></a>
+                                            </li>
+                                          <% } else { %>
+                                            <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + parseInt(i) %>"> <%= i %> </a></li>
+                                          <% } %>
+                                        <% } %>
+                                      <% }  else { %>
+                                        <% for(let i = 1; i <= 3; i++) { %>
+                                          <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + parseInt(i) %>"> <%= i %> </a></li>
+                                        <% } %>
+                                        <li class="page-item disabled"><a class="page-link" href="#"> ... </a></li>
+                                        <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + (parseInt(currentPage) - 1) %>"> <%= (parseInt(currentPage) - 1) %> </a></li>
+                                        <li class="page-item active" aria-current="page">
+                                          <a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + parseInt(currentPage) %>"> <%= currentPage %> <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + (parseInt(currentPage) + 1) %>"> <%= (parseInt(currentPage) + 1) %> </a></li>
+                                        <li class="page-item disabled"><a class="page-link" href="#"> ... </a></li>
+                                        <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + parseInt(pages) - 2 %>"> <%= parseInt(pages) - 2 %> </a></li>
+                                        <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + parseInt(pages) - 1 %>"> <%= parseInt(pages) - 1 %> </a></li>
+                                        <li class="page-item"><a class="page-link" href="<%= '/users/dashboard/users-management/manage/' + parseInt(pages) %>"> <%= pages %> </a></li>
+                                      <% } %>
                                     <% } %>
 
                                     <!-- -->
