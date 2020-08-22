@@ -341,6 +341,7 @@ exports.usersMgmntInitPerPage = async function(req, res, next) {
     users: foundUsers,
     currentPage: page,
     pages: Math.ceil(numOfUsers / resPerPage),
+    paginationLink: '/users/dashboard/users-management/manage/', // Needed for paginationView.ejs
     lastSelAction: (req.body.action) ? req.body.action : 'Initial GET request',
     lastSelUsers: (typeof req.body.users == 'string') ? req.body.users.split() : req.body.users
   });
