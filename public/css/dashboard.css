@@ -241,6 +241,7 @@ div#manage div.input-group.mb-3 button.btn.btn-secondary:hover, div#manage div.i
 
 .page-link {
   color: #dc3545;
+  font-weight: bold;
 }
 
 .page-link:hover {
