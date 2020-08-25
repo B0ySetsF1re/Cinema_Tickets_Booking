@@ -229,6 +229,26 @@ div#manage div.input-group.mb-3 button.btn.btn-secondary:hover, div#manage div.i
   background-color: #797575;
 }
 
+.page-item.active .page-link {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+.page-item.disabled {
+  color: #6c757d;
+}
+
+.page-link {
+  color: #dc3545;
+}
+
+.page-link:hover {
+  color: #be2e3b;
+  background-color: #fcdddf;
+  border-color: #fcdddf;
+}
+
 /*
 * Manage role's tab styling
 */
