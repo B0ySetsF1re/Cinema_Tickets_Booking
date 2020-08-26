@@ -314,7 +314,7 @@ exports.usersMgmntInit = function(req, res) {
 
 // Rendering users separated with pages
 exports.usersMgmntInitPerPage = async function(req, res, next) {
-  const resPerPage = 4;
+  const resPerPage = 10;
   const page = req.params.page || 1;
 
   const foundUsers = await new Promise((resolve, reject) => {

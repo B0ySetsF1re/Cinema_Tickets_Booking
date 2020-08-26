@@ -237,8 +237,10 @@
                         <div class="row justify-content-center">
                           <div class="col-sm-4">
 
-                            <%- include('../includes/paginationView') %>
-
+                            <% if(locals.manageTab) { %>
+                              <%- include('../includes/paginationView/index') %>
+                            <% } %>
+                            
                           </div>
                         </div>
 
