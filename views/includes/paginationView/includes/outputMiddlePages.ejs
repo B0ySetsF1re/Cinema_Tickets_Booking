@@ -9,9 +9,6 @@
     <a class="page-link" href="<%= paginationLink + parseInt(currentPage) %>"> <%= currentPage %> <span class="sr-only">(current)</span></a>
   </li>
   <li class="page-item"><a class="page-link" href="<%= paginationLink + (parseInt(currentPage) + 1) %>"> <%= (parseInt(currentPage) + 1) %> </a></li>
-  <li class="page-item disabled"><a class="page-link" href="#"> ... </a></li>
-  <li class="page-item"><a class="page-link" href="<%= paginationLink + (parseInt(pages) - 2) %>"> <%= (parseInt(pages) - 2) %> </a></li>
-  <li class="page-item"><a class="page-link" href="<%= paginationLink + (parseInt(pages) - 1) %>"> <%= (parseInt(pages) - 1) %> </a></li>
-  <li class="page-item"><a class="page-link" href="<%= paginationLink + parseInt(pages) %>"> <%= pages %> </a></li>
+  <%- include('outputLastPages') %>
 
 <% } %>
