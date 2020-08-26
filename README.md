@@ -54,4 +54,4 @@ In the near future there will be a rule for all dashboard routes, which will che
 
 ## Finally
 
-If you're under Windows, then **git** utility should allow you to run node and npm from its shell, so give it a try. :)
+If you're under Windows, then **git** utility should allow you to run node and npm commands (packages) from its shell, so give it a try. :)
