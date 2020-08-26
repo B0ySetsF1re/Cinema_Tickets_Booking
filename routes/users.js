@@ -11,14 +11,14 @@ const userController = require('../controllers/userController');
 
 // Dashboard page - GET
 router.get('/dashboard', function(req, res) {
-  res.render('dashboard', {
+  res.render('dashboard/dashboard', {
     title: 'Dashboard'
   });
 });
 
 // Dashboard users management page - GET
 router.get('/dashboard/users-management', /*[userController.ensureAuthenticated, userController.isManagerOrAdmin],*/ function(req, res) { // Soon dashboard will have different routes
-  res.render('dashboard_users', { // userController.usersMgmntInit(req, res);
+  res.render('dashboard/dashboard_users', { // userController.usersMgmntInit(req, res);
     title: 'Dashboard - Users'
   });
 });
@@ -27,14 +27,14 @@ router.get('/dashboard/users-management/manage/:page', userController.usersMgmnt
 
 // Dashboard movies page - GET
 router.get('/dashboard/movies', function(req, res) {
-  res.render('dashboard_movies', {
+  res.render('dashboard/dashboard_movies', {
     title: 'Dashboard - Movies'
   });
 });
 
 // Dashboard orders and rents page - GET
 router.get('/dashboard/orders-and-rents', function(req, res) {
-  res.render('dashboard_orders_and_rents', {
+  res.render('dashboard/dashboard_orders_and_rents', {
     title: 'Dashboard - Orders & Rents'
   });
 });

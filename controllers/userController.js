@@ -203,7 +203,7 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
     if(req.originalUrl != '/users/dashboard/users-management/create') { // checking under what route the coude was executed
       sendExpressErrors(res, usrSrcData, 'register');  // rendering "register" ejs view and sending local variables for it
     } else {
-      sendExpressErrors(res, usrSrcData, 'dashboard_users'); // rendering "dashboard" ejs view and sending local variables for it
+      sendExpressErrors(res, usrSrcData, 'dashboard/dashboard_users'); // rendering "dashboard_users" ejs view and sending local variables for it
     }
   } else {
     console.log(_Time.getTime() + 'Success!');
@@ -302,7 +302,7 @@ exports.usersMgmntInit = function(req, res) {
       return console.log(err);
     }
 
-    res.render('dashboard_users', {
+    res.render('dashboard/dashboard_users', {
       title: 'Dashboard - Users',
       manageTab: true,
       users: docs,
@@ -335,7 +335,7 @@ exports.usersMgmntInitPerPage = async function(req, res, next) {
     });
   });
 
-  res.render('dashboard_users', {
+  res.render('dashboard/dashboard_users', {
     title: 'Dashboard - Users',
     manageTab: true,
     users: foundUsers,

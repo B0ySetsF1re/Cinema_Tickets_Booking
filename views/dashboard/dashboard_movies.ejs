@@ -1,4 +1,4 @@
-<%- include('includes/head_dashboard') %>
+<%- include('../includes/dashboard/head') %>
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Cinema Booking Dashboard</a>
@@ -22,13 +22,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/users/dashboard/movies">
+            <a class="nav-link active" href="/users/dashboard/movies">
               <span data-feather="file"></span>
               Movies
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/users/dashboard/orders-and-rents">
+            <a class="nav-link" href="/users/dashboard/orders-and-rents">
               <span data-feather="shopping-cart"></span>
               Orders & Rents
             </a>
@@ -90,4 +90,4 @@
 
     </main>
 
-<%- include('includes/footer_dashboard') %>
+<%- include('../includes/dashboard/footer') %>

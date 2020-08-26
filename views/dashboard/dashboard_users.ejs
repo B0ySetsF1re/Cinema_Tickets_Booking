@@ -1,4 +1,4 @@
-<%- include('includes/head_dashboard') %>
+<%- include('../includes/dashboard/head') %>
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Cinema Booking Dashboard</a>
@@ -78,9 +78,9 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
       <% if(!locals.manageTab) { %>
-        <%- include('includes/dashboardMain') %>
+        <%- include('../includes/dashboard/dashboard_users/dashboardMain') %>
       <% } else { %>
-        <%- include('includes/dashboard_manage_tab') %>
+        <%- include('../includes/dashboard/dashboard_users/dashboard_manage_tab') %>
       <% } %>
 
 
@@ -237,7 +237,7 @@
                         <div class="row justify-content-center">
                           <div class="col-sm-4">
 
-                            <%- include('includes/paginationView') %>
+                            <%- include('../includes/paginationView') %>
 
                           </div>
                         </div>
@@ -266,4 +266,4 @@
           </div>
         </div>
 
-        <%- include('includes/footer_dashboard') %>
+        <%- include('../includes/dashboard/footer') %>
