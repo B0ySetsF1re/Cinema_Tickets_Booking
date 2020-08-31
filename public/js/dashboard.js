@@ -25,8 +25,7 @@ function checkManageTabAction(e) {
   e.preventDefault();
 }
 
-function manageConfirmRemove(e) {
-  e.preventDefault();
+function manageConfirmRemove() {
  /* TBD */
 }
 
