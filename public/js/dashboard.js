@@ -23,6 +23,8 @@ function getRegFormContent() {
 
 function checkManageTabAction(e) {
   e.preventDefault();
+
+  console.log('Action executed...');
 }
 
 function manageConfirmRemove() {
@@ -34,5 +36,5 @@ function manageSelectNewRoles() {
 }
 
 window.onload = function() {
-
+  document.getElementById('manageTabFormSubmit').addEventListener('submit', checkManageTabAction, false);
 }
