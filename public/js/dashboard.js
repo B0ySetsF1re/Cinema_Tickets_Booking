@@ -25,6 +25,7 @@ function checkManageTabAction(e) {
   e.preventDefault();
 
   console.log('Action executed...');
+  // document.getElementById('manageTabForm').submit(); // Testing submition after processing code
 }
 
 function manageConfirmRemove() {
@@ -36,5 +37,5 @@ function manageSelectNewRoles() {
 }
 
 window.onload = function() {
-  document.getElementById('manageTabFormSubmit').addEventListener('submit', checkManageTabAction, false);
+  document.getElementById('manageTabForm').addEventListener('submit', checkManageTabAction, false);
 }
