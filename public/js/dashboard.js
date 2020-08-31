@@ -21,6 +21,15 @@ function getRegFormContent() {
   xhttp.send(); // Sending content to the dashboard page
 }
 
+function manageConfirmRemove(e) {
+  e.preventDefault();
+ /* TBD */
+}
+
+function manageSelectNewRoles() {
+  /* TBD */
+}
+
 window.onload = function() {
 
 }
