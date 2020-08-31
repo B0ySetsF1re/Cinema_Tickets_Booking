@@ -21,6 +21,10 @@ function getRegFormContent() {
   xhttp.send(); // Sending content to the dashboard page
 }
 
+function checkManageTabAction(e) {
+  e.preventDefault();
+}
+
 function manageConfirmRemove(e) {
   e.preventDefault();
  /* TBD */
