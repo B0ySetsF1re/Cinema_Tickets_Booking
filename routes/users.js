@@ -54,13 +54,9 @@ router.post('/dashboard/users-management/create', userController.expressValRules
 router.post('/dashboard/users-management/manage/:page', function(req, res) {
   if(req.body.action == 'Delete') {
     userController.removeUsers(req.body.users);
-    //res.redirect('/users/dashboard/users-management?tab=' + encodeURIComponent('manage'));
     res.redirect('/users/dashboard/users-management/manage/' + req.params.page);
   } else if(req.body.action == 'Change role') {
     console.log(req.body);
-    //res.redirect('/users/dashboard/users-management?tab=' + encodeURIComponent('manage'));
-    //res.location('/users/dashboard/users-management');
-    //userController.usersMgmntInit(req, res);
     res.redirect('/users/dashboard/users-management/manage/' + req.params.page);
   }
 });
