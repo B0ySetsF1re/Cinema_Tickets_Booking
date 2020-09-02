@@ -1,7 +1,7 @@
 <%- include('../includes/dashboard/head') %>
 
 <!-- Modals -->
-<%- include('../includes/dashboard/dashboard_users/modals/confirm_remove') %>
+<%- include('../includes/dashboard/dashboard_users/modals/confirm_delete') %>
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Cinema Tickets Booking Dashboard</a>
@@ -179,7 +179,7 @@
                             <div class="input-group-prepend">
                               <button id="manageTabFormSubmit" class="btn btn-secondary" type="submit">Apply</button>
                             </div>
-                            <select name="action" class="custom-select">
+                            <select id="manageTabFormSelect" name="action" class="custom-select">
                               <option selected>Select action...</option>
                               <option value="Delete">Delete</option>
                               <option value="Change role">Change role</option>
