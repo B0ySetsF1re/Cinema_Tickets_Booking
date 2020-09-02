@@ -33,7 +33,7 @@ function checkManageTabAction(e) {
       }
     } else if(selectVal == 'Change role') {
       console.log('Selected "' + selectVal + '" action...');
-    } else if(selectval == 'Export') {
+    } else if(selectVal == 'Export all data') {
       console.log('Selected "' + selectVal + '" action...');
     } else {
       console.log('Selected "' + selectVal + '" action...');
