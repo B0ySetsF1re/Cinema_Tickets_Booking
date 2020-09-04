@@ -8,7 +8,25 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+
+        <form id="changeRolesBodyForm" class="d-flex justify-content-center mb-3">
+          <div class="form-group p-2">
+            <h5 class="text-center">You selected:</h5>
+            <div class="form-inline">
+              <label class="my-1 mr-4">First Name</label>
+              <label class="my-1 mr-4">Last Name</label>
+              <label class="my-1 mr-4">E-Mail</label>
+              <label class="my-1 mr-4">Username</label>
+              <select class="custom-select my-1 mr-sm-2">
+                <option selected>Choose...</option>
+                <option value="Basic">Basic</option>
+                <option value="Manager">Manager</option>
+                <option value="Admin">Administrator</option>
+              </select>
+            </div>
+          </div>
+        </form>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
