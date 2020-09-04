@@ -29,10 +29,15 @@ function checkManageTabAction(e) {
         document.getElementById('deleteUsersModalConfirmBtn').addEventListener('click',
         () => { manageTabForm.submit(); }, false);
       } else {
-        $('#deleteUsersErrorModal').modal('show');
+        $('#selectUsersErrorModal').modal('show');
       }
     } else if(selectVal == 'Change role') {
-      console.log('Selected "' + selectVal + '" action...');
+      if(usersSelected()) {
+        console.log('Selected "' + selectVal + '" action...')
+      }
+      else {
+        $('#selectUsersErrorModal').modal('show');
+      }
     } else if(selectVal == 'Export all data') {
       console.log('Selected "' + selectVal + '" action...');
     } else {
@@ -47,7 +52,7 @@ window.onload = function() {
 
   (manageTabForm != null) ? manageTabForm.addEventListener('submit', checkManageTabAction, false) : '';
 
-  /*$(document).ready(function() {
+  $(document).ready(function() {
     $('#changeRolesModal').modal('show');
-  });*/
+  });
 }
