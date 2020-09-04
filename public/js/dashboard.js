@@ -1,3 +1,20 @@
+/*function getSelectedUsers() {
+  let usersTable = document.getElementById('manageTabUsersTable').lastElementChild;
+  let selectedUsers = new Array(usersTable.rows.length);
+
+  for(let i = 0; i < usersTable.rows.length; i++) {
+    for(let j = 0; j < usersTable.rows[i].cells.length; j++) {
+      if(j == 0) {
+        selectedUsers[i].id = usersTable.rows[i].cells[j].firstElementChild.value;
+      } else {
+
+      }
+    }
+  }
+
+
+}*/
+
 function usersSelected() {
   let usersTable = document.getElementById('manageTabUsersTable');
 
