@@ -252,7 +252,7 @@ div#manage div.input-group.mb-3 button.btn.btn-secondary:hover, div#manage div.i
 
 @media (min-width: 576px) {
   div#changeRolesModal div.modal-dialog {
-    max-width: 45%;
+    max-width: 800px;
   }
 }
 
