@@ -1,19 +1,37 @@
-/*function getSelectedUsers() {
+function selectedUsersCount() {
   let usersTable = document.getElementById('manageTabUsersTable').lastElementChild;
-  let selectedUsers = new Array(usersTable.rows.length);
+  let count = 0;
 
   for(let i = 0; i < usersTable.rows.length; i++) {
-    for(let j = 0; j < usersTable.rows[i].cells.length; j++) {
-      if(j == 0) {
-        selectedUsers[i].id = usersTable.rows[i].cells[j].firstElementChild.value;
-      } else {
-
-      }
+    if(usersTable.rows[i].cells[0].firstElementChild.checked) {
+      count++;
     }
   }
 
+  return count;
+}
 
-}*/
+function getSelectedUsers() {
+  let usersTable = document.getElementById('manageTabUsersTable').lastElementChild;
+  let selectedUsers = new Array(selectedUsersCount());
+  let i = 0;
+
+  for(let j = 0; j < usersTable.rows.length; j++) {
+    if(usersTable.rows[j].cells[0].firstElementChild.checked) {
+      selectedUsers[i] = new Array(usersTable.rows[j].cells.length - 1);
+      for(let k = 0; k < usersTable.rows[j].cells.length; k++) {
+        if(k == 0) {
+          selectedUsers[i][k] = usersTable.rows[j].cells[k].firstElementChild.value;
+        } else if(k != 1){
+          selectedUsers[i][k - 1] = usersTable.rows[j].cells[k].textContent;
+        }
+      }
+      i++;
+    }
+  }
+
+  return selectedUsers;
+}
 
 function usersSelected() {
   let usersTable = document.getElementById('manageTabUsersTable');
@@ -51,6 +69,8 @@ function checkManageTabAction(e) {
     } else if(selectVal == 'Change role') {
       if(usersSelected()) {
         console.log('Selected "' + selectVal + '" action...')
+        console.log(getSelectedUsers());
+        $('#changeRolesModal').modal('show');
       }
       else {
         $('#selectUsersErrorModal').modal('show');
@@ -69,7 +89,7 @@ window.onload = function() {
 
   (manageTabForm != null) ? manageTabForm.addEventListener('submit', checkManageTabAction, false) : '';
 
-  $(document).ready(function() {
+  /*$(document).ready(function() {
     $('#changeRolesModal').modal('show');
-  });
+  });*/
 }
