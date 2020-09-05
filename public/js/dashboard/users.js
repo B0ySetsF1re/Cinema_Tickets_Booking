@@ -60,7 +60,7 @@ function manageTabSelectNewRoles() {
         if(j == 0) {
           $('#changeRolesFrmGrpUsers' + (i + 1)).append('<input name="id" value="' + selectedUsers[i][j] + '" class="d-none">');
         } else if(j == 5) {
-          $('#changeRolesFrmGrpUsers' + (i + 1)).append('<select class="custom-select my-1 mr-sm-4 ml-sm-4"></select>');
+          $('#changeRolesFrmGrpUsers' + (i + 1)).append('<select class="custom-select my-1 mr-sm-4 ml-sm-4" name="roles"></select>');
           $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option selected>Choose...</option>')
 
           for(let k = 0; k < 3; k++) {
