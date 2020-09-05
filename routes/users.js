@@ -58,6 +58,9 @@ router.post('/dashboard/users-management/manage/:page', function(req, res) {
   } else if(req.body.action == 'Change role') {
     console.log(req.body);
     res.redirect('/users/dashboard/users-management/manage/' + req.params.page);
+  } else {
+    console.log(req.body);
+    res.redirect('/users/dashboard/users-management/manage/' + req.params.page);
   }
 });
 
