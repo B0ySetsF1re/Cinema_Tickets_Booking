@@ -19,6 +19,8 @@ Here are the steps on how to clone and configure the repository:
   ```bash
   git clone https://github.com/B0ySetsF1re/Cinema_Booking.git
   ```
+* Then in the terminal navigate to the project's folder using **CD** command to install dependencies etc.
+
 * Installing dependencies
 
   ```bash
