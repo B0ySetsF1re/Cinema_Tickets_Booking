@@ -97,10 +97,7 @@ function checkManageTabAction(e) {
       }
     } else if(selectVal == 'Change role') {
       if(usersSelected()) {
-        console.log('Selected "' + selectVal + '" action...')
-        console.log(getSelectedUsers());
         $('#changeRolesModal').modal('show');
-        manageTabSelectNewRoles();
       }
       else {
         $('#selectUsersErrorModal').modal('show');
@@ -116,7 +113,7 @@ function checkManageTabAction(e) {
 
 window.onload = function() {
   document.getElementById('manageTabForm').addEventListener('submit', checkManageTabAction, false);
-  /*$(document).ready(function() {
-    $('#changeRolesModal').modal('show');
-  });*/
+  $(document).ready(function() {
+    $('#changeRolesModal').on('show.bs.modal', manageTabSelectNewRoles);
+  });
 }
