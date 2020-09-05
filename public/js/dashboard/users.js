@@ -46,7 +46,36 @@ function usersSelected() {
 }
 
 function manageTabSelectNewRoles() {
-  /* TBD */
+  $(document).ready(function() {
+    if(document.getElementById('changeRolesFrmGrp').childElementCount > 1) {
+      $('#changeRolesFrmGrpTitle').nextAll().remove();
+    }
+
+    let selectedUsers = getSelectedUsers();
+
+    for(let i = 0; i < selectedUsers.length; i++) {
+      $('#changeRolesFrmGrp').append('<div id="changeRolesFrmGrpUsers' + (i + 1) + '" class="form-inline"></div>');
+
+      for(let j = 0; j < selectedUsers[i].length; j++) {
+        if(j == 0) {
+          $('#changeRolesFrmGrpUsers' + (i + 1)).append('<input name="id" value="' + selectedUsers[i][j] + '" class="my-1 mr-4 d-none">');
+        } else if(j == 5) {
+          $('#changeRolesFrmGrpUsers' + (i + 1)).append('<select class="custom-select my-1 mr-sm-2"></select>');
+          $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option selected>Choose...</option>')
+
+          for(let k = 0; k < 3; k++) {
+            switch(k) {
+              case 0: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Basic">Basic</option>'); break;
+              case 1: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Manager">Manager</option>'); break;
+              case 2: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Admin">Administrator</option>'); break;
+            }
+          }
+        } else {
+          $('#changeRolesFrmGrpUsers' + (i + 1)).append('<label class="my-1 mr-4">' + selectedUsers[i][j] + '</label>');
+        }
+      }
+    }
+  });
 }
 
 function checkManageTabAction(e) {
@@ -71,6 +100,7 @@ function checkManageTabAction(e) {
         console.log('Selected "' + selectVal + '" action...')
         console.log(getSelectedUsers());
         $('#changeRolesModal').modal('show');
+        manageTabSelectNewRoles();
       }
       else {
         $('#selectUsersErrorModal').modal('show');
@@ -86,7 +116,6 @@ function checkManageTabAction(e) {
 
 window.onload = function() {
   document.getElementById('manageTabForm').addEventListener('submit', checkManageTabAction, false);
-
   /*$(document).ready(function() {
     $('#changeRolesModal').modal('show');
   });*/
