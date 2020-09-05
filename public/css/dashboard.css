@@ -256,6 +256,10 @@ div#manage div.input-group.mb-3 button.btn.btn-secondary:hover, div#manage div.i
   }
 }
 
+.table-row-darker {
+  background-color: rgba(0,0,0,.05);
+}
+
 /*
 * Manage role's tab styling
 */
