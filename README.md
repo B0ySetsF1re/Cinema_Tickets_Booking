@@ -1,4 +1,4 @@
-# Cinema Booking
+# Cinema Tickets Booking
 ##### Web service to order/rent tickets in a cinema
 
 ## NPM and MongoDB installation/configuration
