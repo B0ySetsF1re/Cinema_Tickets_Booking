@@ -9,23 +9,11 @@
       </div>
       <div class="modal-body">
 
-        <form id="changeRolesBodyForm" method="post" action="/users/dashboard/users-management/manage/<%= locals.currentPage %>" class="d-flex justify-content-center mb-3">
-          <div id="changeRolesFrmGrp" class="form-group p-2">
-            <h5 id="changeRolesFrmGrpTitle" class="text-center">You selected:</h5>
-            <!--<div id="changeRolesFrmGrpUsers" class="form-inline">
-              <label class="my-1 mr-4">First Name</label>
-              <label class="my-1 mr-4">Last Name</label>
-              <label class="my-1 mr-4">E-Mail</label>
-              <label class="my-1 mr-4">Username</label>
-              <select class="custom-select my-1 mr-sm-2">
-                <option selected>Choose...</option>
-                <option value="Basic">Basic</option>
-                <option value="Manager">Manager</option>
-                <option value="Admin">Administrator</option>
-              </select>
-            </div>-->
-          </div>
-        </form>
+        <form id="changeRolesBodyForm" method="post" action="/users/dashboard/users-management/manage/<%= locals.currentPage %>">
+         <div id="changeRolesFrmGrp" class="form-group p-2">
+           <h5 id="changeRolesFrmGrpTitle" class="text-center">You selected:</h5>
+         </div>
+       </form>
 
       </div>
       <div class="modal-footer">
