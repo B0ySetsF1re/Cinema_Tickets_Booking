@@ -85,9 +85,7 @@ function checkManageTabAction(e) {
 }
 
 window.onload = function() {
-  let manageTabForm = document.getElementById('manageTabForm');
-
-  (manageTabForm != null) ? manageTabForm.addEventListener('submit', checkManageTabAction, false) : '';
+  document.getElementById('manageTabForm').addEventListener('submit', checkManageTabAction, false);
 
   /*$(document).ready(function() {
     $('#changeRolesModal').modal('show');
