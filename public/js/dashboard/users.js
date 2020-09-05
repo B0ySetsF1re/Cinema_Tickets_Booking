@@ -101,6 +101,9 @@ function checkManageTabAction(e) {
     } else if(selectVal == 'Change role') {
       if(usersSelected()) {
         $('#changeRolesModal').modal('show');
+
+        document.getElementById('changeRolesConfirmBtn').addEventListener('click',
+        () => { document.getElementById('changeRolesBodyForm').submit(); }, false);
       }
       else {
         $('#selectUsersErrorModal').modal('show');
