@@ -54,7 +54,7 @@ function manageTabSelectNewRoles() {
     let selectedUsers = getSelectedUsers();
 
     for(let i = 0; i < selectedUsers.length; i++) {
-      $('#changeRolesFrmGrp').append('<div id="changeRolesFrmGrpUsers' + (i + 1) + '" class="form-inline d-flex justify-content-between mb-3"></div>');
+      $('#changeRolesFrmGrp').append('<div id="changeRolesFrmGrpUsers' + (i + 1) + '" class="form-inline d-flex justify-content-between pb-1 pt-1"></div>');
 
       for(let j = 0; j < selectedUsers[i].length; j++) {
         if(j == 0) {
