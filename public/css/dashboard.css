@@ -258,6 +258,8 @@ div#manage div.input-group.mb-3 button.btn.btn-secondary:hover, div#manage div.i
 
 .table-row-darker {
   background-color: rgba(0,0,0,.05);
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
 }
 
 /*
