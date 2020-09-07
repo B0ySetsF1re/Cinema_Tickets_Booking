@@ -81,6 +81,30 @@ function manageTabSelectNewRoles() {
   });
 }
 
+function roleOptionsValid() {
+  let formGroup = document.getElementById('changeRolesFrmGrp');
+  let childsCount = document.getElementById('changeRolesFrmGrp').getElementsByTagName('div').length;
+
+  for(let i = 0; i < childsCount; i++) {
+    if(formGroup.getElementsByTagName('div')[i].lastElementChild.value == 'Choose...') {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function validateChangeRoleModal() {
+  let msg = document.getElementById('msg');
+
+  if(roleOptionsValid()) {
+    document.getElementById('changeRolesBodyForm').submit();
+  } else {
+    msg.className = 'alert alert-danger ml-3 mr-3';
+    msg.innerHTML = 'One or more roles haven\'t been changed!';
+  }
+}
+
 function checkManageTabAction(e) {
   e.preventDefault();
   let selectVal = document.getElementById('manageTabFormSelect').value;
@@ -102,8 +126,7 @@ function checkManageTabAction(e) {
       if(usersSelected()) {
         $('#changeRolesModal').modal('show');
 
-        document.getElementById('changeRolesConfirmBtn').addEventListener('click',
-        () => { document.getElementById('changeRolesBodyForm').submit(); }, false);
+        document.getElementById('changeRolesConfirmBtn').addEventListener('click', validateChangeRoleModal, false);
       }
       else {
         $('#selectUsersErrorModal').modal('show');
