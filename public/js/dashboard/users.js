@@ -82,11 +82,10 @@ function manageTabSelectNewRoles() {
 }
 
 function roleOptionsValid() {
-  let formGroup = document.getElementById('changeRolesFrmGrp');
-  let childsCount = document.getElementById('changeRolesFrmGrp').getElementsByTagName('div').length;
+  let formGroupChilds = document.getElementById('changeRolesFrmGrp').getElementsByTagName('div');
 
-  for(let i = 0; i < childsCount; i++) {
-    if(formGroup.getElementsByTagName('div')[i].lastElementChild.value == 'Choose...') {
+  for(let i = 0; i < formGroupChilds.length; i++) {
+    if(formGroupChilds[i].lastElementChild.value == 'Choose...') {
       return false;
     }
   }
