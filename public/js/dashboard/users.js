@@ -105,7 +105,7 @@ function validateChangeRoleModal() {
   } else {
     msg.className = 'alert alert-danger ml-3 mr-3';
     msg.innerHTML = 'One or more roles haven\'t been changed!';
-    //checkIfUserExists();
+    checkIfUserExists();
   }
 }
 
@@ -147,9 +147,6 @@ function checkManageTabAction(e) {
 async function checkIfUserExists() {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
-    let users = {
-      ids: new FormData(document.getElementById('changeRolesBodyForm')).getAll('id')
-    }
 
     xhr.onreadystatechange = function() {
       if(xhr.readyState == 4 && xhr.status == 200) {
@@ -165,7 +162,7 @@ async function checkIfUserExists() {
     xhr.open('POST', '/users/dashboard/users-management/API/checkIfUserExists', true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.responseType = 'json';
-    xhr.send(JSON.stringify(users));
+    xhr.send(JSON.stringify(new FormData(document.getElementById('changeRolesBodyForm')).getAll('id')));
   });
 }
 
