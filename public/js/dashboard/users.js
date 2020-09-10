@@ -143,6 +143,26 @@ function checkManageTabAction(e) {
 
 }
 
+async function checkIfUserExists() {
+  let xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = function() {
+    if(xhr.readyState == 4 && xhr.status == 200) {
+      console.log(xhr.response);
+    }
+  }
+
+  xhr.onerror = function() {
+    /* TBD */
+  }
+
+  xhr.open('POST', '/users/dashboard/users-management/API/checkIfUserExists', true);
+  xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+  xhr.responseType = 'json';
+  xhr.send(JSON.stringify({ data: getSelectedUsers() }));
+}
+
+
 window.onload = function() {
   document.getElementById('manageTabForm').addEventListener('submit', checkManageTabAction, false);
   $(document).ready(function() {
