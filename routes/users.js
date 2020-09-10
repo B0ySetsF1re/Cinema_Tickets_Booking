@@ -66,6 +66,9 @@ router.post('/dashboard/users-management/manage/:page', function(req, res) {
 
 router.post('/dashboard/users-management/API/checkIfUserExists', function(req, res) {
   console.log(req.body);
+  /*res.status(200).send(JSON.stringify({
+    data: 'test'
+  }));*/
 });
 
 // Login page - GET
