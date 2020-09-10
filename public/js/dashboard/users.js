@@ -45,39 +45,43 @@ function usersSelected() {
   return false;
 }
 
-function manageTabSelectNewRoles() {
-  $(document).ready(function() {
-    if(document.getElementById('changeRolesFrmGrp').childElementCount > 1) {
-      $('#changeRolesFrmGrpTitle').nextAll().remove();
-    }
-
-    let selectedUsers = getSelectedUsers();
-
-    for(let i = 0; i < selectedUsers.length; i++) {
-      $('#changeRolesFrmGrp').append('<div id="changeRolesFrmGrpUsers' + (i + 1) + '" class="form-inline d-flex justify-content-between pb-1 pt-1"></div>');
-
-      for(let j = 0; j < selectedUsers[i].length; j++) {
-        if(j == 0) {
-          $('#changeRolesFrmGrpUsers' + (i + 1)).append('<input name="id" value="' + selectedUsers[i][j] + '" class="d-none">');
-        } else if(j == 5) {
-          $('#changeRolesFrmGrpUsers' + (i + 1)).append('<select class="custom-select my-1 mr-sm-4 ml-sm-4" name="roles"></select>');
-          $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option selected>Choose...</option>')
-
-          for(let k = 0; k < 3; k++) {
-            switch(k) {
-              case 0: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Basic">Basic</option>'); break;
-              case 1: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Manager">Manager</option>'); break;
-              case 2: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Admin">Administrator</option>'); break;
-            }
-          }
-        } else {
-          $('#changeRolesFrmGrpUsers' + (i + 1)).append('<label class="my-1 mr-4 ml-4">' + selectedUsers[i][j] + '</label>');
-        }
-        if((i + 1) % 2 != 0) {
-          $('#changeRolesFrmGrpUsers' + (i + 1)).addClass('table-row-darker');
-        }
+async function manageTabSelectNewRoles() {
+  await new Promise(resolve => {
+    $(document).ready(async () => {
+      if(document.getElementById('changeRolesFrmGrp').childElementCount > 1) {
+        $('#changeRolesFrmGrpTitle').nextAll().remove();
       }
-    }
+
+      let selectedUsers = getSelectedUsers();
+
+      await selectedUsers.forEach(async (userGroups, i) => {
+          $('#changeRolesFrmGrp').append('<div id="changeRolesFrmGrpUsers' + (i + 1) + '" class="form-inline d-flex justify-content-between pb-1 pt-1"></div>');
+
+          await userGroups.forEach(async (user, j) => {
+            if(j == 0) {
+              $('#changeRolesFrmGrpUsers' + (i + 1)).append('<input name="id" value="' + user + '" class="d-none">');
+            } else if(j == 5) {
+              $('#changeRolesFrmGrpUsers' + (i + 1)).append('<select class="custom-select my-1 mr-sm-4 ml-sm-4" name="roles"></select>');
+              $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option selected>Choose...</option>')
+
+              for(let k = 0; k < 3; k++) {
+                switch(k) {
+                  case 0: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Basic">Basic</option>'); break;
+                  case 1: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Manager">Manager</option>'); break;
+                  case 2: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Admin">Administrator</option>'); break;
+                }
+              }
+            } else {
+              $('#changeRolesFrmGrpUsers' + (i + 1)).append('<label class="my-1 mr-4 ml-4">' + user + '</label>');
+            }
+            if((i + 1) % 2 != 0) {
+              $('#changeRolesFrmGrpUsers' + (i + 1)).addClass('table-row-darker');
+            }
+          });
+      });
+
+      resolve();
+    });
   });
 }
 
