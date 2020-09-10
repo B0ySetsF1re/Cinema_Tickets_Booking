@@ -162,7 +162,9 @@ async function checkIfUserExists() {
     xhr.open('POST', '/users/dashboard/users-management/API/checkIfUserExists', true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.responseType = 'json';
-    xhr.send(JSON.stringify(new FormData(document.getElementById('changeRolesBodyForm')).getAll('id')));
+    xhr.send(JSON.stringify({
+      ids: new FormData(document.getElementById('changeRolesBodyForm')).getAll('id')
+    }));
   });
 }
 
