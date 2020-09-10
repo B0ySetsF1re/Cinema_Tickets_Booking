@@ -144,22 +144,25 @@ function checkManageTabAction(e) {
 }
 
 async function checkIfUserExists() {
-  let xhr = new XMLHttpRequest();
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
 
-  xhr.onreadystatechange = function() {
-    if(xhr.readyState == 4 && xhr.status == 200) {
-      console.log(xhr.response);
+    xhr.onreadystatechange = function() {
+      if(xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr.response);
+        resolve();
+      }
     }
-  }
 
-  xhr.onerror = function() {
-    /* TBD */
-  }
+    xhr.onerror = function() {
+      reject(new Error('An error occurred during the transaction'));
+    }
 
-  xhr.open('POST', '/users/dashboard/users-management/API/checkIfUserExists', true);
-  xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-  xhr.responseType = 'json';
-  xhr.send(JSON.stringify({ data: getSelectedUsers() }));
+    xhr.open('POST', '/users/dashboard/users-management/API/checkIfUserExists', true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.responseType = 'json';
+    xhr.send(JSON.stringify({ data: getSelectedUsers() }));
+  });
 }
 
 
