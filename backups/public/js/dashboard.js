@@ -23,4 +23,16 @@ function getRegFormContent() {
 
 window.onload = function() {
   getRegFormContent();
+  
+  /*$.ajax({
+    type: 'POST',
+    url: '/users/dashboard/users-management/API/checkIfUserExists',
+    data: { data: 'test' },
+    success: function(data) {
+
+    },
+    error: function(jqXHR, textStatus, err) {
+      alert('text status '+ textStatus + ', err ' + err)
+    }
+  });*/
 }
