@@ -64,6 +64,10 @@ router.post('/dashboard/users-management/manage/:page', function(req, res) {
   }
 });
 
+router.post('/dashboard/users-management/API/checkIfUserExists', function(req, res) {
+  console.log(req.body);
+});
+
 // Login page - GET
 router.get('/login', userController.checkIfLoggedIn, function(req, res) {
   res.render('login', {
