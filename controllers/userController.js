@@ -371,3 +371,26 @@ exports.removeUsers = function(users) {
     });
   });
 }
+
+async function findOneUserById(id) {
+  return new Promise((resolve, reject) => {
+    db.users.findOne({ _id: mongojs.ObjectId(id) }, (err, user) => {
+      if(err) {
+        reject(new Error('An error occurred during the transaction!'));
+      }
+
+      if(user == null) {
+        reject(new Error('The user couldn\'t be found!'));
+      }
+
+      resolve(user);
+    });
+  }).then(
+    success => {
+      return success;
+    },
+    error => {
+      return null;
+    }
+  );
+}
