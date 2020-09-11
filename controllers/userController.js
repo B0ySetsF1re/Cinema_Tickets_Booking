@@ -55,6 +55,13 @@ db.getCollectionNames(function(err, colNames) {
   );
 });
 
+// Custom async forEach loop
+async function asyncForEach(array, callback) {
+  for(let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}
+
 function getUsrFormData(req) {
   return {
     errors: {},
