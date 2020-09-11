@@ -64,7 +64,7 @@ router.post('/dashboard/users-management/manage/:page', function(req, res) {
   }
 });
 
-router.post('/dashboard/users-management/API/checkIfUserExists', userController.checkIfUserExists, function(req, res) {
+router.post('/dashboard/users-management/API/checkIfUserExists', userController.checkIfUsersExist, function(req, res) {
   res.status(200).send(JSON.stringify({
     error: false,
     message: 'The transaction was successfull!'

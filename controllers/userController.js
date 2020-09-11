@@ -402,7 +402,7 @@ async function findOneUserById(id) {
   );
 }
 
-exports.checkIfUserExists = async function(req, res, next) {
+exports.checkIfUsersExist = async function(req, res, next) {
   await new Promise(async (resolve, reject) => {
     await asyncForEach(req.body.ids, async (id) => {
       if(await findOneUserById(id) == null) {
