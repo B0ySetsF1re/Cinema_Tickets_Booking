@@ -103,8 +103,11 @@ async function checkIfUserExists() {
 
     xhr.onreadystatechange = function() {
       if(xhr.readyState == 4 && xhr.status == 200) {
-        console.log(xhr.response);
-        resolve(xhr.response);
+        if(!xhr.response.error) {
+          resolve(xhr.response);
+        } else {
+          reject(xhr.response);
+        }
       }
     }
 
@@ -118,18 +121,31 @@ async function checkIfUserExists() {
     xhr.send(JSON.stringify({
       ids: new FormData(document.getElementById('changeRolesBodyForm')).getAll('id')
     }));
-  });
+  }).then(
+    success => {
+      return success;
+    },
+    error => {
+      return error;
+    }
+  );
 }
 
-function validateChangeRoleModal() {
+async function validateChangeRoleModal() {
   let msg = document.getElementById('msg');
 
-  if(roleOptionsValid()) {
-    document.getElementById('changeRolesBodyForm').submit();
-  } else {
+  if(!roleOptionsValid()) {
     msg.className = 'alert alert-danger ml-3 mr-3';
     msg.innerHTML = 'One or more roles haven\'t been changed!';
-    checkIfUserExists();
+  } else {
+    const usersExist = await checkIfUserExists();
+
+    if(usersExist.error) {
+      msg.className = 'alert alert-danger ml-3 mr-3';
+      msg.innerHTML = usersExist.message;
+    } else {
+      document.getElementById('changeRolesBodyForm').submit();
+    }
   }
 }
 
