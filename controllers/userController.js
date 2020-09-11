@@ -417,7 +417,10 @@ exports.checkIfUserExists = async function(req, res, next) {
       next();
     },
     error => {
-      res.status(200).send(false);
+      res.status(200).send(JSON.stringify({
+        error: true,
+        message: error.message
+      }));
     }
   );
 }
