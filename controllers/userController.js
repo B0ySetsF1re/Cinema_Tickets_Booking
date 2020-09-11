@@ -401,3 +401,23 @@ async function findOneUserById(id) {
     }
   );
 }
+
+exports.checkIfUserExists = async function(req, res, next) {
+  await new Promise(async (resolve, reject) => {
+    await asyncForEach(req.body.ids, async (id) => {
+      if(await findOneUserById(id) == null) {
+        reject(new Error('Looks like some of the users were already removed, please refresh the page and try again!'));
+      }
+    });
+
+    resolve();
+
+  }).then(
+    success => {
+      next();
+    },
+    error => {
+      res.status(200).send(false);
+    }
+  );
+}
