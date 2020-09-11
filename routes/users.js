@@ -64,11 +64,11 @@ router.post('/dashboard/users-management/manage/:page', function(req, res) {
   }
 });
 
-router.post('/dashboard/users-management/API/checkIfUserExists', function(req, res) {
-  console.log(req.body);
-  /*res.status(200).send(JSON.stringify({
-    data: 'test'
-  }));*/
+router.post('/dashboard/users-management/API/checkIfUserExists', userController.checkIfUserExists, function(req, res) {
+  res.status(200).send(JSON.stringify({
+    error: false,
+    message: 'The transaction was successfull!'
+  }));
 });
 
 // Login page - GET
