@@ -44,8 +44,8 @@ After cloning the repository, you need to configure the environment variables fo
 
 ```
 HOST=localhost
+PORT=3000
 
-DB_PORT=3000
 DB_NAME=cinema_booking
 
 ```
