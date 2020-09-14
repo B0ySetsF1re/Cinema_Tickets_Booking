@@ -16,6 +16,9 @@ let RBAC = {};
 // Module for getting current time (debugging)
 const getTime = require('../lib/debuggingTools/index');
 
+// Custom async forEach loop module
+const asyncForEach = require('../lib/asyncForEach/index');
+
 // Before applying role models and instentiating RBAC, we need to check if the roles collection exists
 db.getCollectionNames(function(err, colNames) {
   if(err) {
@@ -54,13 +57,6 @@ db.getCollectionNames(function(err, colNames) {
     }
   );
 });
-
-// Custom async forEach loop
-async function asyncForEach(array, callback) {
-  for(let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
-}
 
 function getUsrFormData(req) {
   return {
