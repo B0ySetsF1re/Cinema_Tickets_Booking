@@ -1,3 +1,6 @@
+// Connecting dotenv module for production/dev config management
+require('dotenv').config();
+
 // Connecting required modules
 const express = require('express');
 const session = require('express-session');
@@ -10,8 +13,8 @@ const flash = require('connect-flash');
 const path = require('path');
 const ejs = require('ejs');
 
-var port = 3000;
-// var hostAddress = '192.168.1.106';
+const port = process.env.DB_PORT;
+const hostAddress = process.env.HOST;
 
 // Connecting new .js files located under /routes directory
 const routes = require('./routes/index');
@@ -75,7 +78,7 @@ app.use('/', routes);
 app.use('/users', users);
 
 // Listening server on port 3000
-app.listen(port);
+app.listen(port, hostAddress);
 
 console.log(_Time.getTime() + 'Server started on port ' + port);
 

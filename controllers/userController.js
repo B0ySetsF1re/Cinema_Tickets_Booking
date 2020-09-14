@@ -1,6 +1,6 @@
 // Connecting required modules
 const mongojs = require('mongojs');
-var db = mongojs('cinema_booking', ['users']);
+var db = mongojs(process.env.DB_NAME, ['users']);
 
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
