@@ -6,7 +6,7 @@
 Before cloning this repository, you need to have Node.js and NPM installed, here are some snippets:
 
 * Please check out this **[link](https://nodejs.org/en/)** to install **Node.js** and **NPM**.
-* To install and configure MongoDB, check out its **[official documentation](https://docs.mongodb.com/manual/installation/)** (please note that to properly run MongoDB and access Mongo Shell - you need to configure MongoDB to run as a system service).
+* To install and configure **MongoDB**, check out its **[official documentation](https://docs.mongodb.com/manual/installation/)** (please note that to properly run MongoDB and access Mongo Shell - you need to configure MongoDB to run as a system service).
 
 ## Cloning the repository
 
@@ -38,6 +38,19 @@ You can also use **[nodemon](https://www.npmjs.com/package/nodemon)** package, s
   ```bash
   npm install <package_name> --save
   ```
+
+## Setting up host and database name
+After cloning the repository, you need to configure the environment variables for a database name, host etc. First of all create ```.env``` file in the root of the web app directory. Here is basic example of the variables configured for the _development_ web app deployment:
+
+```
+HOST=localhost
+
+DB_PORT=3000
+DB_NAME=cinema_booking
+
+```
+
+This _config_ can be changed as whatever you like, even for the _prod_ deployment.
 
 ## How to get Admin role?
 As of now there is no way to obtain this role via UI ***(the dashboard actually has the web form allowing to register a user with any preferred role, however you already need to have Admin or Manager role to at least get into the dashboard).*** In order to get Admin/Manager role, you have to find the ```/users/dashboard/users-management``` route, the code of which is located here: ```./routes/users.js```. Here is the example:
