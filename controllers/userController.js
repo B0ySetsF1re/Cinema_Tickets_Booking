@@ -13,8 +13,8 @@ const roleModel = require('../models/roleModel');
 const rbacController = require('../controllers/rbacController');
 let RBAC = {};
 
-// Getting current time (for debugging)
-const _Time = require('../debugging/timeDisplay');
+// Module for getting current time (debugging)
+const getTime = require('../lib/debuggingTools/index');
 
 // Before applying role models and instentiating RBAC, we need to check if the roles collection exists
 db.getCollectionNames(function(err, colNames) {
@@ -34,7 +34,7 @@ db.getCollectionNames(function(err, colNames) {
 
   promise.then (
     result => {
-      console.log(_Time.getTime() + result);
+      console.log(getTime() + result);
 
       db.roles.findOne({}, { _id: 0 }, function(err, doc) {
         if(err) {
@@ -45,12 +45,12 @@ db.getCollectionNames(function(err, colNames) {
       });
     },
     error => {
-      console.log(_Time.getTime() + error);
+      console.log(getTime() + error);
 
       db.roles.insert(roleModel);
       RBAC = new rbacController(roleModel);
 
-      setTimeout(() => { console.log(_Time.getTime() + 'Done!') }, 1000);
+      setTimeout(() => { console.log(getTime() + 'Done!') }, 1000);
     }
   );
 });
@@ -204,7 +204,7 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
   // Finds the validation errors in this request and wraps them in an object with handy functions
   if(!errors.isEmpty()) {
     //return res.status(422).json({ errors: errors.array() });
-    console.log(_Time.getTime() + 'There are errors!');
+    console.log(getTime() + 'There are errors!');
     console.log(errors.array());
 
     if(req.originalUrl != '/users/dashboard/users-management/create') { // checking under what route the coude was executed
@@ -213,7 +213,7 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
       sendExpressErrors(res, usrSrcData, 'dashboard/dashboard_users'); // rendering "dashboard_users" ejs view and sending local variables for it
     }
   } else {
-    console.log(_Time.getTime() + 'Success!');
+    console.log(getTime() + 'Success!');
 
     const newUser = new User(usrSrcData.first_name, usrSrcData.last_name, usrSrcData.email, usrSrcData.username, usrSrcData.password, usrSrcData.role_option);
 
@@ -223,10 +223,10 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
 
         db.users.insert(newUser, function(err, doc) {
           if(err) {
-            console.log(_Time.getTime() + 'An error occurred when tried to add a new user to the database!');
+            console.log(getTime() + 'An error occurred when tried to add a new user to the database!');
             res.send(err);
           } else {
-            console.log(_Time.getTime() + 'User has been added with role: ' + newUser.role);
+            console.log(getTime() + 'User has been added with role: ' + newUser.role);
 
             if(req.originalUrl != '/users/dashboard/users-management/create') {
               // Success message
@@ -373,7 +373,7 @@ exports.removeUsers = function(users) {
         return console.log(err);
       }
 
-      console.log(_Time.getTime() + 'User(s) removed:');
+      console.log(getTime() + 'User(s) removed:');
       console.log(result);
     });
   });

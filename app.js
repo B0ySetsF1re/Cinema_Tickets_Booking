@@ -22,8 +22,8 @@ const users = require('./routes/users');
 
 const app = express();
 
-// Getting current time (for debugging)
-const _Time = require('./debugging/timeDisplay');
+// Module for getting current time (debugging)
+const getTime = require('./lib/debuggingTools/index');
 
 // View Engine
 app.set('view engine', 'ejs');
@@ -80,6 +80,6 @@ app.use('/users', users);
 // Listening server on port 3000
 app.listen(port, hostAddress);
 
-console.log(_Time.getTime() + 'Server started on port ' + port);
+console.log(getTime() + 'Server started on port ' + port);
 
 module.exports = app;

@@ -9,6 +9,9 @@ const router = express.Router();
 // Connecting userController (for signup/login and access controll logics)
 const userController = require('../controllers/userController');
 
+// Module for getting current time (debugging)
+const getTime = require('../lib/debuggingTools/index');
+
 // Dashboard page - GET
 router.get('/dashboard', function(req, res) {
   res.render('dashboard/dashboard', {
@@ -118,7 +121,7 @@ router.post('/login',
                                    failureRedirect: '/users/login',
                                    failureFlash: 'Invalid Username or Password' }),
   function (req, res) {
-    console.log(_Time.getTime() + 'Auth Successfull');
+    console.log(getTime() + 'Auth Successfull');
     res.redirect('/');
   });
 
