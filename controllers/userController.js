@@ -14,7 +14,7 @@ const rbacController = require('../controllers/rbacController');
 let RBAC = {};
 
 // Module for getting current time (debugging)
-const getTime = require('../lib/debuggingTools/index');
+const getTime = require('../lib/debuggingTools/getCurrentTime/index');
 
 // Custom async forEach loop module
 const asyncForEach = require('../lib/asyncForEach/index');

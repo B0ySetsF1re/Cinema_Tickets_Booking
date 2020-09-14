@@ -6,7 +6,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 
 // Module for getting current time (debugging)
-const getTime = require('../lib/debuggingTools/index');
+const getTime = require('../lib/debuggingTools/getCurrentTime/index');
 
 // Dashboard page - GET
 router.get('/dashboard', function(req, res) {

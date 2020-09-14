@@ -23,7 +23,7 @@ const users = require('./routes/users');
 const app = express();
 
 // Module for getting current time (debugging)
-const getTime = require('./lib/debuggingTools/index');
+const getTime = require('./lib/debuggingTools/getCurrentTime/index');
 
 // View Engine
 app.set('view engine', 'ejs');
