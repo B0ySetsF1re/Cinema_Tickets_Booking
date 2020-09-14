@@ -13,8 +13,8 @@ const flash = require('connect-flash');
 const path = require('path');
 const ejs = require('ejs');
 
-const port = process.env.DB_PORT;
 const hostAddress = process.env.HOST;
+const port = process.env.PORT;
 
 // Connecting new .js files located under /routes directory
 const routes = require('./routes/index');
