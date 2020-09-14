@@ -1,7 +1,3 @@
-// Attaching environmental variables from the .env file
-// Note! This should be changed on production!
-// require('dotenv').config();
-
 // Connecting required modules
 const express = require('express');
 const router = express.Router();
