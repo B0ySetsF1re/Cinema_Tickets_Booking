@@ -66,9 +66,9 @@ async function manageTabSelectNewRoles() {
 
               for(let k = 0; k < 3; k++) {
                 switch(k) {
-                  case 0: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Basic">Basic</option>'); break;
-                  case 1: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Manager">Manager</option>'); break;
-                  case 2: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="Admin">Administrator</option>'); break;
+                  case 0: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="basic">Basic</option>'); break;
+                  case 1: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="manager">Manager</option>'); break;
+                  case 2: $('#changeRolesFrmGrpUsers' + (i + 1) + ' select').append('<option value="admin">Administrator</option>'); break;
                 }
               }
             } else {
