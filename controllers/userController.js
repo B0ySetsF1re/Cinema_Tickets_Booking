@@ -58,6 +58,17 @@ db.getCollectionNames(function(err, colNames) {
   );
 });
 
+function createNewUser(src) {
+  return new User({
+    first_name: src.first_name,
+    last_name: src.last_name,
+    email: src.email,
+    username: src.username,
+    password: src.password,
+    role: src.role_option
+  });
+}
+
 function getUsrFormData(req) {
   return {
     errors: {},
@@ -211,13 +222,7 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
   } else {
     console.log(getTime() + 'Success!');
 
-    const newUser = new User({
-      first_name: usrSrcData.first_name,
-      last_name: usrSrcData.last_name,
-      email: usrSrcData.email,
-      username: usrSrcData.username,
-      password: usrSrcData.password,
-      role: usrSrcData.role_option });
+    const newUser = createNewUser(usrSrcData);
 
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(newUser.password, salt, function(err, hash) {
