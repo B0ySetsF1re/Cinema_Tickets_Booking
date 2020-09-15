@@ -211,7 +211,13 @@ exports.register = (req, res) => { // Perhaps will divide this function a bit
   } else {
     console.log(getTime() + 'Success!');
 
-    const newUser = new User(usrSrcData.first_name, usrSrcData.last_name, usrSrcData.email, usrSrcData.username, usrSrcData.password, usrSrcData.role_option);
+    const newUser = new User({
+      first_name: usrSrcData.first_name,
+      last_name: usrSrcData.last_name,
+      email: usrSrcData.email,
+      username: usrSrcData.username,
+      password: usrSrcData.password,
+      role: usrSrcData.role_option });
 
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(newUser.password, salt, function(err, hash) {
