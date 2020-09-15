@@ -1,4 +1,4 @@
-let roles = {
+module.exports = {
   admin: {
     can: ['create_roles', 'manage_users'],
     inherits: ['manager']
@@ -11,5 +11,3 @@ let roles = {
     can: ['comment']
   }
 }
-
-module.exports = roles;
