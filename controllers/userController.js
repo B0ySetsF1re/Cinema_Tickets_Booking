@@ -431,3 +431,27 @@ exports.checkIfUsersExist = async function(req, res, next) {
     }
   );
 }
+
+exports.updateRole = async function(req, res) {
+  if(typeof req.body.id == 'string') {
+    req.body.id = req.body.id.split();
+    req.body.roles = req.body.roles.split();
+  }
+
+  req.body.id.forEach((id, index) => {
+    db.users.findAndModify({
+      query: { _id: mongojs.ObjectId(id) },
+      update: { $set: { role: req.body.roles[index]} },
+      new: true
+    }, (err, user, lastErrObject) => {
+      if(err) {
+        return console.log({
+          error: err,
+          lastErrorObject: lastErrObject
+        });
+      }
+
+      console.log(getTime() + 'Successfull role update for the record with ID of: ' + user._id + ', new role: ' + user.role);
+    });
+  });
+}
