@@ -55,7 +55,7 @@ router.post('/dashboard/users-management/manage/:page', function(req, res) {
     userController.removeUsers(req.body.users);
     res.redirect('/users/dashboard/users-management/manage/' + req.params.page);
   } else if(req.body.action == 'Change role') {
-    console.log(req.body);
+    userController.updateRole(req, res);
     res.redirect('/users/dashboard/users-management/manage/' + req.params.page);
   } else {
     console.log(req.body);
