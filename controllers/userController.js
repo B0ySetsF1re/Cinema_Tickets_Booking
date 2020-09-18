@@ -326,6 +326,36 @@ exports.usersMgmntInit = function(req, res) {
   });
 };
 
+// Initializing pages for the specific collection
+async function pagesInit(page, resPerPage, collection) {
+  const foundUsers = await new Promise((resolve, reject) => {
+    collection.find({}).limit(resPerPage).skip((resPerPage * page) - resPerPage, function(err, users) {
+      if(err) {
+        reject(new Error(err));
+      }
+      resolve(users);
+    });
+  });
+
+  const numOfUsers = await new Promise((resolve, reject) => {
+    collection.count({}, function(err, result) {
+      if(err) {
+        reject(new Error(err));
+      }
+      resolve(result);
+    });
+  });
+
+  return new Promise((resolve) => {
+    resolve({
+      page: page,
+      resPerPage: resPerPage,
+      foundUsers: foundUsers,
+      numOfUsers: numOfUsers
+    });
+  });
+}
+
 // Rendering users separated with pages
 exports.usersMgmntInitPerPage = async function(req, res, next) {
   const resPerPage = 10;
