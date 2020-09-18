@@ -358,33 +358,14 @@ async function pagesInit(page, resPerPage, collection) {
 
 // Rendering users separated with pages
 exports.usersMgmntInitPerPage = async function(req, res, next) {
-  const resPerPage = 10;
-  const page = req.params.page || 1;
-
-  const foundUsers = await new Promise((resolve, reject) => {
-    db.users.find({}, { password: 0 }).limit(resPerPage).skip((resPerPage * page) - resPerPage, function(err, users) {
-      if(err) {
-        reject(new Error(err));
-      }
-      resolve(users);
-    });
-  });
-
-  const numOfUsers = await new Promise((resolve, reject) => {
-    db.users.count({}, function(err, result) {
-      if(err) {
-        reject(new Error(err));
-      }
-      resolve(result);
-    });
-  });
+  const pageConfig = await pagesInit(req.params.page || 1, 10, db.users);
 
   res.render('dashboard/dashboard_users', {
     title: 'Dashboard - Users',
     manageTab: true,
-    users: foundUsers,
-    currentPage: page,
-    pages: Math.ceil(numOfUsers / resPerPage),
+    users: pageConfig.foundUsers,
+    currentPage: pageConfig.page,
+    pages: Math.ceil(pageConfig.numOfUsers / pageConfig.resPerPage),
     paginationLink: '/users/dashboard/users-management/manage/', // Needed for paginationView.ejs
     lastSelAction: (req.body.action) ? req.body.action : 'Initial GET request',
     lastSelUsers: (typeof req.body.users == 'string') ? req.body.users.split() : req.body.users
