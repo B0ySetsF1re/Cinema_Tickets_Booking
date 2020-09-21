@@ -358,7 +358,7 @@ async function pagesInit(page, resPerPage, collection) {
 
 // Rendering users separated with pages
 exports.usersMgmntInitPerPage = async function(req, res, next) {
-  const pageConfig = await pagesInit(req.params.page || 1, 10, db.users);
+  const pageConfig = await pagesInit(req.params.page || 1, 20, db.users);
 
   res.render('dashboard/dashboard_users', {
     title: 'Dashboard - Users',
@@ -367,6 +367,7 @@ exports.usersMgmntInitPerPage = async function(req, res, next) {
     currentPage: pageConfig.page,
     pages: Math.ceil(pageConfig.numOfUsers / pageConfig.resPerPage),
     paginationLink: req.originalUrl.substring(0, req.originalUrl.lastIndexOf('/') + 1), // Needed for paginationView.ejs
+    paginationLinkQuery: Object.keys(req.query).length != 0 ? req.query.resPerPage : false,
     lastSelAction: (req.body.action) ? req.body.action : 'Initial GET request',
     lastSelUsers: (typeof req.body.users == 'string') ? req.body.users.split() : req.body.users
   });
