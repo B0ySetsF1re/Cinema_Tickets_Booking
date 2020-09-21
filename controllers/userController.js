@@ -358,8 +358,8 @@ async function pagesInit(page, resPerPage, collection) {
 
 // Rendering users separated with pages
 exports.usersMgmntInitPerPage = async function(req, res, next) {
-  const paginationLinkQuery = Object.keys(req.query).length != 0 ? req.query.resPerPage : false;
-  const pageConfig = await pagesInit(req.params.page || 1, 20, db.users);
+  const paginationLinkQuery = Object.keys(req.query).length != 0 ? parseInt(req.query.resPerPage) : false;
+  const pageConfig = await pagesInit(req.params.page || 1, paginationLinkQuery ? paginationLinkQuery : 20, db.users);
 
   res.render('dashboard/dashboard_users', {
     title: 'Dashboard - Users',
