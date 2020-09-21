@@ -7,7 +7,6 @@
         <li class="page-item <%= (currentPage == 1) ? 'disabled' : '' %>">
           <a class="page-link" href="<%= paginationLink + (parseInt(currentPage) - 1) + resPerPageQuery %>" <%= (currentPage == 1) ? 'tabindex="-1" aria-disabled="true"' : '' %>>Previous</a>
         </li>
-        <!-- -->
 
         <% if(pages <= 10) { %>
           <%- include('includes/countAndOutputPages') %>
@@ -34,8 +33,6 @@
           <% } %>
         <% } %>
 
-
-        <!-- -->
         <li class="page-item <%= (currentPage == pages) ? 'disabled' : '' %>">
           <a class="page-link" href="<%= paginationLink + (parseInt(currentPage) + 1) + resPerPageQuery %>" <%= (currentPage == pages) ? 'tabindex="-1" aria-disabled="true"' : '' %>>Next</a>
         </li>
