@@ -262,6 +262,12 @@ div#manage div.input-group.mb-3 button.btn.btn-secondary:hover, div#manage div.i
   border-bottom: 1px solid #dee2e6;
 }
 
+.dropdown .btn {
+  font-weight: bold;
+  height: 35px;
+  padding-top: 5px;
+}
+
 /*
 * Manage role's tab styling
 */
