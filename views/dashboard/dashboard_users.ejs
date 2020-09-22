@@ -267,7 +267,9 @@
                                   <a class="dropdown-item" href="/users/dashboard/users-management/manage/<%= locals.currentPage + '?resPerPage=' + parseInt(100) %>">100</a>
                                   <a class="dropdown-item" href="/users/dashboard/users-management/manage/<%= locals.currentPage + '?resPerPage=' + parseInt(150) %>">150</a>
                                   <div class="dropdown-divider"></div>
-                                  <input id="customResPerPage" name="customResPerPage" type="text" placeholder="Enter custom value..." class="form-control">
+                                  <div data-toggle="tooltip" title="Press enter once you entered the value...">
+                                    <input id="customResPerPage" class="form-control" name="customResPerPage" type="text" placeholder="Enter custom value...">
+                                  </div>
                                 </div>
                               </div>
 
