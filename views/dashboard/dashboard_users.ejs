@@ -240,12 +240,36 @@
 
                         </form>
 
-                        <div class="row justify-content-center">
-                          <div class="col-sm-4">
+                        <div class="pagination-items container-fluid">
+                          <div class="row justify-content-sm-between">
 
-                            <% if(locals.manageTab) { %>
-                              <%- include('../includes/paginationView/index') %>
-                            <% } %>
+                            <div class="col-sm-3"><!-- empty column --></div>
+
+                            <div class="col-sm-4">
+
+                              <% if(locals.manageTab) { %>
+                                <%- include('../includes/paginationView/index') %>
+                              <% } %>
+
+                            </div>
+
+                            <div class="col-sm-2">
+
+                              <div class="dropdown">
+                                <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Items per page
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <a class="dropdown-item" href="/users/dashboard/users-management/manage/<%= locals.currentPage %>">20</a>
+                                  <a class="dropdown-item" href="/users/dashboard/users-management/manage/<%= locals.currentPage + '?resPerPage=' + parseInt(30) %>">30</a>
+                                  <a class="dropdown-item" href="/users/dashboard/users-management/manage/<%= locals.currentPage + '?resPerPage=' + parseInt(50) %>">50</a>
+                                  <a class="dropdown-item" href="/users/dashboard/users-management/manage/<%= locals.currentPage + '?resPerPage=' + parseInt(100) %>">100</a>
+                                  <a class="dropdown-item" href="/users/dashboard/users-management/manage/<%= locals.currentPage + '?resPerPage=' + parseInt(150) %>">150</a>
+                                </div>
+                              </div>
+
+                            </div>
 
                           </div>
                         </div>
