@@ -183,10 +183,30 @@ function checkManageTabAction(e) {
   });
 }
 
+function setResPerPage(e) {
+  if(e.key == 'Enter') {
+    let regExp = /^\d+$/;
+    let input = document.getElementById('customResPerPage');
+
+    if(input.value == '' || regExp.test(input.value) == false) {
+      window.alert('This field can\'t be empty and should containt numbers only!');
+    } else {
+      let currentUrl = window.location.href;
+      let pageNumExp = RegExp('[/]\\d+', 'g');
+
+      pageNumExp.test(currentUrl);
+      currentUrl = currentUrl.substring(0, pageNumExp.lastIndex);
+
+      window.location.replace(currentUrl + '?resPerPage=' + parseInt(input.value));
+    }
+  }
+}
+
 
 window.onload = function() {
   document.getElementById('manageTabForm').addEventListener('submit', checkManageTabAction, false);
   $(document).ready(function() {
     $('#changeRolesModal').on('show.bs.modal', manageTabSelectNewRoles);
   });
+  document.getElementById('customResPerPage').addEventListener('keyup', setResPerPage, false);
 }
