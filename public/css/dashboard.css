@@ -233,6 +233,10 @@ div#manage div.input-group.mb-3 button.btn.btn-secondary:hover, div#manage div.i
   margin-bottom: 1rem !important;
 }
 
+.pagination {
+  margin-bottom: 0;
+}
+
 .page-item.active .page-link {
   background-color: #dc3545;
   border-color: #dc3545;
