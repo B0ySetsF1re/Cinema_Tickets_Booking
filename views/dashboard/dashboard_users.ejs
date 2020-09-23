@@ -211,7 +211,6 @@
                             </thead>
                             <tbody>
                                 <% if(locals.users) { %>
-                                  <% let lastUsr = 0 %>
                                   <% users.forEach(function(user, index) { %>
                                     <tr>
                                       <td><input class="checkbox-red" type="checkbox" name="users" value="<%= user._id %>"></td>
