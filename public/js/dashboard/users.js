@@ -1,8 +1,4 @@
-async function asyncForEach(array, callback) {
-  for(let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
-}
+import { asyncForEach } from '../asyncForEach/index.js';
 
 function selectedUsersCount() {
   let usersTable = document.getElementById('manageTabUsersTable').lastElementChild;
