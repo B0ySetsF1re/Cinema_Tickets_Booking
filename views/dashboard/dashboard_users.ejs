@@ -214,15 +214,7 @@
                                   <% let lastUsr = 0 %>
                                   <% users.forEach(function(user, index) { %>
                                     <tr>
-                                      <td><input class="checkbox-red" type="checkbox" name="users" value="<%= user._id %>"
-                                        <% if(locals.lastSelAction != 'Change role') { %>
-                                          <%= '' %>
-                                        <% } else { %>
-                                          <% if(user.email == lastSelUsers[lastUsr]) { %>
-                                            <%= 'checked' %>
-                                            <% lastUsr++ %>
-                                          <% } %>
-                                      <%  } %>></td>
+                                      <td><input class="checkbox-red" type="checkbox" name="users" value="<%= user._id %>"></td>
                                       <td><%= index + 1 %></td>
                                       <td><%= user.first_name %></td>
                                       <td><%= user.last_name %></td>
