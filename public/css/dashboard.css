@@ -229,6 +229,10 @@ div#manage div.input-group.mb-3 button.btn.btn-secondary:hover, div#manage div.i
   background-color: #797575;
 }
 
+div#selAllUsersTooltip {
+  width: 18px;
+}
+
 .pagination-items {
   margin-bottom: 1rem !important;
 }
