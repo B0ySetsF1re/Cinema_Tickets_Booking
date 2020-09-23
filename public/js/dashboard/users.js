@@ -189,7 +189,7 @@ function setResPerPage(e) {
     let input = document.getElementById('customResPerPage');
 
     if(input.value == '' || regExp.test(input.value) == false) {
-      window.alert('This field can\'t be empty and should containt numbers only!');
+      window.alert('This field can\'t be empty and should contain numbers only!');
     } else {
       let currentUrl = window.location.href;
       let pageNumExp = RegExp('[/]\\d+', 'g');
