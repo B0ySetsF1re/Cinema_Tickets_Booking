@@ -367,10 +367,8 @@ exports.usersMgmntInitPerPage = async function(req, res, next) {
     users: pageConfig.foundUsers,
     currentPage: pageConfig.page,
     pages: Math.ceil(pageConfig.numOfUsers / pageConfig.resPerPage),
-    paginationLink: req.originalUrl.substring(0, req.originalUrl.lastIndexOf('/') + 1), // Needed for paginationView.ejs
-    paginationLinkQuery: paginationLinkQuery,
-    lastSelAction: (req.body.action) ? req.body.action : 'Initial GET request',
-    lastSelUsers: (typeof req.body.users == 'string') ? req.body.users.split() : req.body.users
+    paginationLink: req.originalUrl.substring(0, req.originalUrl.lastIndexOf('/') + 1), // Needed for paginationView
+    paginationLinkQuery: paginationLinkQuery // This property is also used by paginationView
   });
 
   next();
