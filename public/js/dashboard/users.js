@@ -202,6 +202,21 @@ function setResPerPage(e) {
   }
 }
 
+function selAllUsers() {
+  let selAllUsersInput = document.getElementById('selAllUsers');
+  let table = document.getElementById('manageTabUsersTable').rows;
+
+  if(selAllUsersInput.checked) {
+    for(let i = 1; i < table.length; i++) {
+      table.item(i).firstElementChild.children[0].checked = true;
+    }
+  } else {
+    for(let i = 1; i < table.length; i++) {
+      table.item(i).firstElementChild.children[0].checked = false;
+    }
+  }
+}
+
 
 window.onload = function() {
   document.getElementById('manageTabForm').addEventListener('submit', checkManageTabAction, false);
@@ -210,4 +225,5 @@ window.onload = function() {
     $('[data-toggle="tooltip"]').tooltip();
   });
   document.getElementById('customResPerPage').addEventListener('keyup', setResPerPage, false);
+  document.getElementById('selAllUsers').addEventListener('click', selAllUsers, false);
 }
