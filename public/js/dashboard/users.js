@@ -206,15 +206,18 @@ function selAllUsers() {
   let selAllUsersInput = document.getElementById('selAllUsers');
   let table = document.getElementById('manageTabUsersTable').rows;
 
-  if(selAllUsersInput.checked) {
-    for(let i = 1; i < table.length; i++) {
-      table.item(i).firstElementChild.children[0].checked = true;
+  $(document).ready(function() {
+    if(selAllUsersInput.checked) {
+      for(let i = 1; i < table.length; i++) {
+        table.item(i).firstElementChild.children[0].checked = true;
+      }
+    } else {
+      for(let i = 1; i < table.length; i++) {
+        table.item(i).firstElementChild.children[0].checked = false;
+      }
     }
-  } else {
-    for(let i = 1; i < table.length; i++) {
-      table.item(i).firstElementChild.children[0].checked = false;
-    }
-  }
+    $('#selAllUsersTooltip').tooltip('hide');
+  });
 }
 
 
