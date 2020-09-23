@@ -207,6 +207,7 @@ window.onload = function() {
   document.getElementById('manageTabForm').addEventListener('submit', checkManageTabAction, false);
   $(document).ready(function() {
     $('#changeRolesModal').on('show.bs.modal', manageTabSelectNewRoles);
+    $('[data-toggle="tooltip"]').tooltip();
   });
   document.getElementById('customResPerPage').addEventListener('keyup', setResPerPage, false);
 }
