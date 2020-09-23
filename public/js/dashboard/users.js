@@ -1,3 +1,9 @@
+async function asyncForEach(array, callback) {
+  for(let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}
+
 function selectedUsersCount() {
   let usersTable = document.getElementById('manageTabUsersTable').lastElementChild;
   let count = 0;
@@ -54,10 +60,10 @@ async function manageTabSelectNewRoles() {
 
       let selectedUsers = getSelectedUsers();
 
-      await selectedUsers.forEach(async (userGroups, i) => {
+      await asyncForEach(selectedUsers, async (userGroups, i) => {
           $('#changeRolesFrmGrp').append('<div id="changeRolesFrmGrpUsers' + (i + 1) + '" class="form-inline d-flex justify-content-between pb-1 pt-1"></div>');
 
-          await userGroups.forEach(async (user, j) => {
+          await asyncForEach(userGroups, async (user, j) => {
             if(j == 0) {
               $('#changeRolesFrmGrpUsers' + (i + 1)).append('<input name="id" value="' + user + '" class="d-none">');
             } else if(j == 5) {
