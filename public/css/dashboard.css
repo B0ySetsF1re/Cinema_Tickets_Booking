@@ -280,6 +280,14 @@ div#selAllUsersTooltip {
   padding-top: 5px;
 }
 
+div.dropdown.dropdown-filter div.dropdown-menu div.dropdown-divider {
+  margin-bottom: 0;
+}
+
+div.dropdown.dropdown-filter div.dropdown-menu {
+  padding-bottom: 0;
+}
+
 input#customResPerPage {
   border-style: none;
 }
