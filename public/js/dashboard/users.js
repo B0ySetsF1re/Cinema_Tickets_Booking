@@ -1,4 +1,4 @@
-import { asyncForEach } from '../asyncForEach/index.js';
+import { asyncForEach } from '../asyncForEach.js';
 
 function selectedUsersCount() {
   let usersTable = document.getElementById('manageTabUsersTable').lastElementChild;
