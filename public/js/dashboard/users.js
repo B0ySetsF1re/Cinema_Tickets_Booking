@@ -1,4 +1,5 @@
 import { asyncForEach } from '../asyncForEach.js';
+import { setResPerPage } from '../resPerPageCustomVal.js';
 
 function selectedUsersCount() {
   let usersTable = document.getElementById('manageTabUsersTable').lastElementChild;
@@ -185,25 +186,6 @@ function checkManageTabAction(e) {
   });
 }
 
-function setResPerPage(e) {
-  if(e.key == 'Enter') {
-    let regExp = /^\d+$/;
-    let input = document.getElementById('customResPerPage');
-
-    if(input.value == '' || regExp.test(input.value) == false) {
-      window.alert('This field can\'t be empty and should contain numbers only!');
-    } else {
-      let currentUrl = window.location.href;
-      let pageNumExp = RegExp('[/]\\d+', 'g');
-
-      pageNumExp.test(currentUrl);
-      currentUrl = currentUrl.substring(0, pageNumExp.lastIndex);
-
-      window.location.replace(currentUrl + '?resPerPage=' + parseInt(input.value));
-    }
-  }
-}
-
 function selAllUsers() {
   let selAllUsersInput = document.getElementById('selAllUsers');
   let table = document.getElementById('manageTabUsersTable').rows;
@@ -225,10 +207,16 @@ function selAllUsers() {
 
 window.onload = function() {
   document.getElementById('manageTabForm').addEventListener('submit', checkManageTabAction, false);
+
   $(document).ready(function() {
     $('#changeRolesModal').on('show.bs.modal', manageTabSelectNewRoles);
     $('[data-toggle="tooltip"]').tooltip();
   });
-  document.getElementById('customResPerPage').addEventListener('keyup', setResPerPage, false);
+
+  document.getElementById('customResPerPage').addEventListener('keyup',
+    (e) => {
+      setResPerPage(e, document.getElementById('customResPerPage'));
+    }, false);
+
   document.getElementById('selAllUsers').addEventListener('click', selAllUsers, false);
 }
