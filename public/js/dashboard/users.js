@@ -180,6 +180,7 @@ function checkManageTabAction(e) {
       }
     } else if(selectVal == 'Export all data') {
       console.log('Selected "' + selectVal + '" action...');
+      manageTabForm.submit();
     } else {
       console.log('Selected "' + selectVal + '" action...');
     }
