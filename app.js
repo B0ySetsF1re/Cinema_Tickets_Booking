@@ -8,9 +8,10 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy; // Used for authentication method deffinition
 
-const bodyParser = require('body-parser');
-const flash = require('connect-flash');
 const path = require('path');
+const bodyParser = require('body-parser');
+
+const flash = require('connect-flash');
 const ejs = require('ejs');
 
 const hostAddress = process.env.HOST;
