@@ -71,10 +71,6 @@ app.get('*', function(req, res, next) {
   next();
 });
 
-app.post(function(req, res, next) {
-  next();
-});
-
 // Defining new routes and connecting them to the new .js files
 app.use('/', routes);
 app.use('/users', users);
