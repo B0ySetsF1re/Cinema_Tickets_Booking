@@ -1,6 +1,7 @@
-function setResPerPage(e, input) {
+function setResPerPage(e) {
   if(e.key == 'Enter') {
     let regExp = /^\d+$/;
+    let input = document.getElementById('customResPerPage');
 
     if(input.value == '' || regExp.test(input.value) == false) {
       window.alert('This field can\'t be empty and should contain numbers only!');

@@ -213,10 +213,7 @@ window.onload = function() {
     $('[data-toggle="tooltip"]').tooltip();
   });
 
-  document.getElementById('customResPerPage').addEventListener('keyup',
-    (e) => {
-      setResPerPage(e, document.getElementById('customResPerPage'));
-    }, false);
+  document.getElementById('customResPerPage').addEventListener('keyup',setResPerPage, false);
 
   document.getElementById('selAllUsers').addEventListener('click', selAllUsers, false);
 }
