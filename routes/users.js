@@ -59,7 +59,8 @@ router.post('/dashboard/users-management/manage/:page', function(req, res) {
     res.redirect('/users/dashboard/users-management/manage/' + req.params.page);
   } else {
     console.log(req.body);
-    res.redirect('/users/dashboard/users-management/manage/' + req.params.page);
+    userController.exportAll(req, res);
+    //res.redirect('/users/dashboard/users-management/manage/' + req.params.page);
   }
 });
 

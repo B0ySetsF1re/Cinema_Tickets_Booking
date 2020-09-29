@@ -2,6 +2,9 @@
 const mongojs = require('mongojs');
 var db = mongojs(process.env.DB_NAME, ['users']);
 
+const { parse } = require('fast-csv');
+const { EOL } = require('os');
+
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 
@@ -464,5 +467,33 @@ exports.updateRole = async function(req, res) {
 
       console.log(getTime() + 'Successfull role update for the record with ID of: ' + user._id + ', new role: ' + user.role);
     });
+  });
+}
+
+exports.exportAll = async function(req, res) {
+  db.users.find({}).toArray((err, data) => {
+    if(err) {
+      console.log(err);
+    }
+
+    const csv = data.join(EOL);
+
+    console.log(csv);
+
+    const stream = parse({ headers: true })
+    .on('error', error => console.error(error))
+    .on('data', row => {
+      console.log(row);
+      //res.attachment('test.csv');
+      //res.status(200).send(row);
+    })
+    .on('end', rowCount => console.log(`Parsed ${rowCount} rows`));
+
+    stream.write(csv);
+    stream.end();
+
+    /*fastcsv.write(data, { headers: true }).on('finish', () => {
+      console.log('Write to CTB_Users_Collection.csv was successfull!');
+    }).pipe(ws);*/
   });
 }
